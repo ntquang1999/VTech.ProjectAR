@@ -8,6 +8,8 @@ public class WelcomeScene : MonoBehaviour
 {
 
     public Slider slider;
+    public static GameController gameController;
+    [SerializeField] float debug_fakeWaitTime = 5;
 
     [Range(0.0f, 1.0f)]
     public float sliderValue;
@@ -15,13 +17,23 @@ public class WelcomeScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameController = FindObjectOfType<GameController>();
+        PlayerData.GeneratePlayerData();
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = sliderValue;
+
+        //slider.value = sliderValue;
+    }
+
+    private void FixedUpdate()
+    {
+        debug_fakeWaitTime -= Time.fixedDeltaTime;
+        slider.value = 5 - debug_fakeWaitTime;
+        if (debug_fakeWaitTime <= 4)
+            gameController.loadScene(1);
     }
 
     public void debug_addProgress()

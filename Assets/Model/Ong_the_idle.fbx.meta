@@ -6,7 +6,12 @@ ModelImporter:
   - first:
       74: 5533266407218823567
     second: Ong_the
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ongthe_rig_Ongthe1
+    second: {fileID: 2100000, guid: 3f269b8b025532646b2c2865dc165e01, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

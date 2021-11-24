@@ -3,52 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerData
+public struct historyItem
 {
-    string phoneNumber;
-    string name;
-    int userTier;
-    List<int> historyItemID;
-    int[] zodiacBeast = new int[12];
+    public int ID;
+    public string time;
+    public string date;
+}
+public static class PlayerData
+{
     
-    PlayerData()
+
+    public static string phoneNumber;
+    public static string name;
+    public static int userTier;
+    public static int shakeTurn;
+    public static List<historyItem> historyItemList = new List<historyItem>();
+    public static int[] zodiacBeast = new int[12];
+
+    public static void GeneratePlayerData()
     {
         phoneNumber = "0123456789";
         name = "Dummy Player";
         userTier = 0;
-        historyItemID.Add(1);
-        zodiacBeast[0] = 1;
+        shakeTurn = 5;
+        historyItem dummyItem = new historyItem();
+        dummyItem.ID = 1;
+        dummyItem.time = "16:12:05";
+        dummyItem.date = "23/11/2021";
+        historyItemList.Add(dummyItem);
+        historyItemList.Add(dummyItem);
+        historyItemList.Add(dummyItem);
+        historyItemList.Add(dummyItem);
+        historyItemList.Add(dummyItem);
+        zodiacBeast[0] = 5;
     }
 
-    PlayerData(string phoneNumber, string name, int userTier, List<int> historyItemID, int[] zodiacBeast)
-    {
-        this.phoneNumber = phoneNumber;
-        this.name = name;
-        this.userTier = userTier;
-        this.historyItemID = historyItemID;
-        this.zodiacBeast = zodiacBeast;
-    }
 
-    void AddItem(int ID)
+    public static void AddItem(historyItem item)
     {
-        historyItemID.Add(ID);
+        historyItemList.Add(item);
         if(isZodiacBeast())
         {
-            zodiacBeast[ID]++;
+            zodiacBeast[item.ID]++;
         }
     }
-    
-    void LoadPlayerData()
+
+    public static void LoadPlayerData()
     {
         //Call API to get the data
     }
 
-    void SavePlayerData()
+    public static void SavePlayerData()
     {
         //Call API to save the data
     }
 
-    bool isZodiacBeast()
+    public static bool isZodiacBeast()
     {
         return true;
     }
