@@ -36,16 +36,16 @@ public class QueBoi : MonoBehaviour
 
     void getQueBoiImage()
     {
-        queBoi[0] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/BINHAN");
-        queBoi[1] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/HANHPHUC");
-        queBoi[2] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/HOANHI");
-        queBoi[3] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/MAYMAN");
-        queBoi[4] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/NHAMDAN");
-        queBoi[5] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/SUCKHOE");
-        queBoi[6] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/SUMVAY");
-        queBoi[7] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/TAILOC");
-        queBoi[8] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/VUIVE");
-        queBoi[9] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/VUONGPHAT");
+        queBoi[0] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/binh_an");
+        queBoi[1] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/hanh_phuc");
+        queBoi[2] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/hoan_hi");
+        queBoi[3] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/may_man");
+        queBoi[4] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/nham_dan");
+        queBoi[5] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/suc_khoe");
+        queBoi[6] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/sum_vay");
+        queBoi[7] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/tai_loc");
+        queBoi[8] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/vui_ve");
+        queBoi[9] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/vuong_phat");
     }
 
     void getString()
