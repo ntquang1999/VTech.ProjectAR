@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,23 +9,29 @@ public class QueBoi : MonoBehaviour
 
     public int queBoiIndex = 0;
     Sprite[] queBoi = new Sprite[10];
-    
-    // Start is called before the first frame update
-    void Start()
+    string[] desc = new string[10];
+    public Text queDesc;
+
+    private void Awake()
     {
-        getQueBoiImage();      
+        getQueBoiImage();
+        getString();
     }
 
     private void OnEnable()
     {
         queBoiIndex = Random.Range(0, 9);
+        gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
+        gameObject.GetComponent<Image>().SetNativeSize();
+        queDesc.text = desc[queBoiIndex];
+        if (queBoiIndex == 5)
+            PlayerData.shakeTurn += 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
-        gameObject.GetComponent<Image>().SetNativeSize();
+        
     }
 
     void getQueBoiImage()
@@ -40,6 +46,22 @@ public class QueBoi : MonoBehaviour
         queBoi[7] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/TAILOC");
         queBoi[8] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/VUIVE");
         queBoi[9] = Resources.Load<Sprite>("Arts/2DART/0711/QueBoi/VUONGPHAT");
+    }
+
+    void getString()
+    {
+        //Dummy string
+        desc[0] = "Bạn nhận được một Iphone 14 pro max";
+        desc[1] = "Bạn nhận được 1000 phút gọi liên mạng";
+        desc[2] = "Bạn nhận được 500GB data không giới hạn";
+        desc[3] = "Bạn nhận được 10000 SMS";
+        desc[4] = "Bạn nhận được một con vịt xòe ra 2 cái cánh";
+        desc[5] = "Bạn nhận được 3 lượt lắc quẻ";
+        desc[6] = "Bạn nhận được một bộ linh thú đầy đủ";
+        desc[7] = "Bạn nhận được một phần quà đặc biệt";
+        desc[8] = "Bạn nhận được một bánh chưg";
+        desc[9] = "Bạn nhận được null";
+
     }
 
 }
