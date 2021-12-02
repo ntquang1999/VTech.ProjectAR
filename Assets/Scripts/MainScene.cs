@@ -20,7 +20,7 @@ public class MainScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        soLuotLacQue.text = "Bạn có " + PlayerData.shakeTurn + " lượt lắc quẻ!";
+        soLuotLacQue.text =PlayerData.shakeTurn.ToString();
     }
 
     public void XinQue()
