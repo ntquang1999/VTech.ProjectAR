@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
             DontDestroyOnLoad(instance);
         }
         else Destroy(gameObject);
+        //PlayerData.GeneratePlayerData();
     }
 
     // Start is called before the first frame update

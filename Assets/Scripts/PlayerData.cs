@@ -31,11 +31,24 @@ public static class PlayerData
         dummyItem.time = "16:12:05";
         dummyItem.date = "23/11/2021";
         historyItemList.Add(dummyItem);
+        dummyItem.ID = 1;
         historyItemList.Add(dummyItem);
+        dummyItem.ID = 2;
         historyItemList.Add(dummyItem);
+        dummyItem.ID = 3;
         historyItemList.Add(dummyItem);
+        dummyItem.ID = 4;
         historyItemList.Add(dummyItem);
-        zodiacBeast[0] = 5;
+        dummyItem.ID = 5;
+        historyItemList.Add(dummyItem);
+        dummyItem.ID = 6;
+        historyItemList.Add(dummyItem);
+        dummyItem.ID = 7;
+        historyItemList.Add(dummyItem);
+        dummyItem.ID = 8;
+        historyItemList.Add(dummyItem);
+        dummyItem.ID = 9;
+        zodiacBeast[0] = 9;
     }
 
 
