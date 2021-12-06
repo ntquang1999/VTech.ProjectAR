@@ -1,7 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.UI;
 
 namespace UnityEngine.XR.ARFoundation.ProjectAR
 {
@@ -19,6 +20,8 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
         [Tooltip("Instantiates this prefab on a plane at the touch location.")]
         GameObject m_PlacedPrefab;
 
+        [SerializeField]
+        GameObject m_Indicator;
         /// <summary>
         /// The prefab to instantiate on touch.
         /// </summary>
@@ -32,6 +35,12 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
         /// The object instantiated as a result of a successful raycast intersection with a plane.
         /// </summary>
         public GameObject spawnedObject { get; private set; }
+        public bool objectPlaced = false;
+        bool posValid = false;
+        public PlayerController controller;
+        public Camera camera;
+        public Text text;
+        public ARPlaneManager planeManager;
 
         void Awake()
         {
@@ -52,23 +61,43 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
 
         void Update()
         {
-            if (!TryGetTouchPosition(out Vector2 touchPosition))
+            if (!objectPlaced && m_RaycastManager.Raycast(Camera.current.ViewportToScreenPoint(new Vector3(0.5f,0.5f)), s_Hits, TrackableType.PlaneWithinPolygon))
+            {
+                text.text = "Đã phát hiện được mặt phẳng, chạm vào màn hình để đặt ống quẻ";
+                var hitPose = s_Hits[0].pose;
+                
+                if (spawnedObject == null)
+                {
+                    //objectPlaced = true;
+                    //controller.objectPlaced = true;
+                    spawnedObject = Instantiate(m_Indicator, hitPose.position, m_PlacedPrefab.transform.rotation);
+                }
+                else
+                {
+                    spawnedObject.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
+                }
+
+                posValid = true;
+            }
+                if (!TryGetTouchPosition(out Vector2 touchPosition))
                 return;
 
-            if (m_RaycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon))
+            if (posValid)
             {
-                // Raycast hits are sorted by distance, so the first one
-                // will be the closest hit.
+                if(!objectPlaced)
+                {
+                    DestroyImmediate(spawnedObject);
+                }
                 var hitPose = s_Hits[0].pose;
 
                 if (spawnedObject == null)
                 {
-                    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+                    objectPlaced = true;
+                    controller.objectPlaced = true;
+                    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, Quaternion.Euler(hitPose.rotation.x, hitPose.rotation.y + 90, hitPose.rotation.z));
                 }
-                else
-                {
-                    //spawnedObject.transform.position = hitPose.position;
-                }
+
+                text.text = "Di chuyển thiết bị từ từ để quan sát";
             }
         }
 

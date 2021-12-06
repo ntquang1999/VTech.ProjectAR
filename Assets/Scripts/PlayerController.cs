@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     private static PlayerController instance;
-
+    public bool objectPlaced = false;
     private void Awake()
     {
         if (instance == null)
@@ -27,4 +27,6 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+
 }

@@ -7,6 +7,10 @@ TagManager:
   - btnUp
   - btnDown
   - OngThe
+  - Tiger
+  - OngQue
+  - PlacedObject
+  - AR
   layers:
   - Default
   - TransparentFX

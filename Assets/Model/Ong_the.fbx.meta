@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fefae05457c39c94ebe094b24417093e
+guid: 3be1d7fc74425c743aca69c9d2ac6954
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
@@ -46,7 +46,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -95,7 +95,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
