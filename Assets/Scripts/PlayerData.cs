@@ -25,30 +25,7 @@ public static class PlayerData
         phoneNumber = "0123456789";
         name = "Dummy Player";
         userTier = 0;
-        shakeTurn = 5;
-        historyItem dummyItem = new historyItem();
-        dummyItem.ID = 1;
-        dummyItem.time = "16:12:05";
-        dummyItem.date = "23/11/2021";
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 1;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 2;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 3;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 4;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 5;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 6;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 7;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 8;
-        historyItemList.Add(dummyItem);
-        dummyItem.ID = 9;
-        zodiacBeast[0] = 9;
+        shakeTurn = 500;
     }
 
 

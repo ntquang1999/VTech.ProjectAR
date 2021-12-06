@@ -8,8 +8,8 @@ public class QueBoi : MonoBehaviour
 
 
     public int queBoiIndex = 0;
-    Sprite[] queBoi = new Sprite[10];
-    string[] desc = new string[10];
+    Sprite[] queBoi = new Sprite[22];
+    string[] desc = new string[22];
     public Text queDesc;
 
     private void Awake()
@@ -19,13 +19,13 @@ public class QueBoi : MonoBehaviour
     }
 
     private void OnEnable()
-    {
-        queBoiIndex = Random.Range(0, 9);
+    {       
+        queBoiIndex = Random.Range(0, 21);
         gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
         gameObject.GetComponent<Image>().SetNativeSize();
-        queDesc.text = desc[queBoiIndex];
-        if (queBoiIndex == 5)
-            PlayerData.shakeTurn += 3;
+        gameObject.transform.localScale = Vector3.one * (queBoiIndex <= 11 ? 2 : 1);
+        queDesc.text = GameData.queBoiDesc[queBoiIndex];
+        saveQue();
     }
 
     // Update is called once per frame
@@ -36,32 +36,47 @@ public class QueBoi : MonoBehaviour
 
     void getQueBoiImage()
     {
-        queBoi[0] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/binh_an");
-        queBoi[1] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/hanh_phuc");
-        queBoi[2] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/hoan_hi");
-        queBoi[3] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/may_man");
-        queBoi[4] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/nham_dan");
-        queBoi[5] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/suc_khoe");
-        queBoi[6] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/sum_vay");
-        queBoi[7] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/tai_loc");
-        queBoi[8] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/vui_ve");
-        queBoi[9] = Resources.Load<Sprite>("SanPham/2DART/Popup/QueBoi/vuong_phat");
+        queBoi[0] = Resources.Load<Sprite>("1");
+        queBoi[1] = Resources.Load<Sprite>("2");
+        queBoi[2] = Resources.Load<Sprite>("3");
+        queBoi[3] = Resources.Load<Sprite>("4");
+        queBoi[4] = Resources.Load<Sprite>("5");
+        queBoi[5] = Resources.Load<Sprite>("6");
+        queBoi[6] = Resources.Load<Sprite>("7");
+        queBoi[7] = Resources.Load<Sprite>("8");
+        queBoi[8] = Resources.Load<Sprite>("9");
+        queBoi[9] = Resources.Load<Sprite>("10");
+        queBoi[10] = Resources.Load<Sprite>("11");
+        queBoi[11] = Resources.Load<Sprite>("12");
+        queBoi[12] = Resources.Load<Sprite>("binh_an");
+        queBoi[13] = Resources.Load<Sprite>("hanh_phuc");
+        queBoi[14] = Resources.Load<Sprite>("hoan_hi");
+        queBoi[15] = Resources.Load<Sprite>("may_man");
+        queBoi[16] = Resources.Load<Sprite>("nham_dan");
+        queBoi[17] = Resources.Load<Sprite>("suc_khoe");
+        queBoi[18] = Resources.Load<Sprite>("sum_vay");
+        queBoi[19] = Resources.Load<Sprite>("tai_loc");
+        queBoi[20] = Resources.Load<Sprite>("vui_ve");
+        queBoi[21] = Resources.Load<Sprite>("vuong_phat");
     }
 
     void getString()
     {
-        //Dummy string
-        desc[0] = "Bạn nhận được một Iphone 14 pro max";
-        desc[1] = "Bạn nhận được 1000 phút gọi liên mạng";
-        desc[2] = "Bạn nhận được 500GB data không giới hạn";
-        desc[3] = "Bạn nhận được 10000 SMS";
-        desc[4] = "Bạn nhận được một con vịt xòe ra 2 cái cánh";
-        desc[5] = "Bạn nhận được 3 lượt lắc quẻ";
-        desc[6] = "Bạn nhận được một bộ linh thú đầy đủ";
-        desc[7] = "Bạn nhận được một phần quà đặc biệt";
-        desc[8] = "Bạn nhận được một bánh chưg";
-        desc[9] = "Bạn nhận được null";
+        
 
     }
+
+    void saveQue()
+    {
+        historyItem newItem = new historyItem();
+        newItem.ID = queBoiIndex+1;
+        newItem.time = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm:ss");
+        newItem.date = System.DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy");
+        PlayerData.historyItemList.Add(newItem);
+        if(queBoiIndex<=11)
+        {
+            PlayerData.zodiacBeast[queBoiIndex]++;
+        }
+    }    
 
 }

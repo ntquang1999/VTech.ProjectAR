@@ -9,12 +9,13 @@ public class MainScene : MonoBehaviour
     public static GameController gameController;
     public Canvas queBoiCanvas;
     public Text soLuotLacQue;
+    public Text theLe;
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = FindObjectOfType<GameController>();
-        PlayerData.shakeTurn = 5;
+        theLe.text = GameData.theLe;
     }
 
     // Update is called once per frame

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 1321797600663006503}
   - component: {fileID: 1809364335098279838}
   m_Layer: 0
-  m_Name: Ong_the_idle
+  m_Name: Ong_the_idle - Copy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

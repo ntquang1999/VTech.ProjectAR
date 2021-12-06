@@ -19,6 +19,7 @@ public class WelcomeScene : MonoBehaviour
     {
         gameController = FindObjectOfType<GameController>();
         PlayerData.GeneratePlayerData();
+        GameData.GenerateGameData();
     }
 
     // Update is called once per frame
