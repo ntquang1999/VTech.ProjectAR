@@ -26,6 +26,10 @@ public class ARScene : MonoBehaviour
         queBoiCanvas.SetActive(true);
     }
 
+    public void reset()
+    {
+        placedObject.reset();
+    }
     public void loadScene(int index)
     {
         SceneManager.LoadScene(index);

@@ -21,8 +21,7 @@ public class PlacedObject : MonoBehaviour
         {
             arScene.showCanvas();
             shaking = false;
-        }
-        
+        }        
     }
 
     public void shake()
@@ -30,6 +29,12 @@ public class PlacedObject : MonoBehaviour
         tiger.SetActive(true);
         shaking = true;
         ongQue.SetBool("shake", true);
-    }    
+    }
+
+    public void reset()
+    {
+        tiger.SetActive(false);
+        ongQue.SetBool("shake", false);
+    }
 
 }
