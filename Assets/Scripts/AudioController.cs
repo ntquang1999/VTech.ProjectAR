@@ -18,13 +18,14 @@ public class AudioController : MonoBehaviour
             DontDestroyOnLoad(instance);
         }
         else Destroy(gameObject);
-    }
-    void Start()
-    {
         bgMusic = GetComponents<AudioSource>()[1];
         soundEffect = GetComponents<AudioSource>()[0];
         bgMusic.volume = volume;
         soundEffect.volume = volume;
+    }
+    void Start()
+    {
+        
     }
 
     public void mute()
@@ -48,8 +49,7 @@ public class AudioController : MonoBehaviour
         else
         {
             return false;
-        } 
-        
+        }     
     }
 
 }

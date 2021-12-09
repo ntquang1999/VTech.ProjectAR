@@ -19,6 +19,7 @@ public class MainScene : MonoBehaviour
     AudioController audioController;
     public GameObject musicBtn;
     public GameObject muteBtn;
+    public GameObject tutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,10 @@ public class MainScene : MonoBehaviour
         theLe.text = GameData.theLe;
         GameData.GenerateGameData();
         PlayerData.GeneratePlayerData();
+        if(PlayerData.firstTime)
+        {
+            tutorial.SetActive(true);
+        }
         audioController = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioController>();
         if (audioController.getState())
         {
@@ -86,5 +91,11 @@ public class MainScene : MonoBehaviour
     {
         audioController.unmute();
     }
+
+    public void share()
+    {
+        UniClipboard.SetText("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        Application.OpenURL(UniClipboard.GetText());
+    }    
 
 }

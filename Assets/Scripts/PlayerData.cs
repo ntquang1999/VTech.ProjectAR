@@ -19,13 +19,14 @@ public static class PlayerData
     public static int shakeTurn;
     public static List<historyItem> historyItemList = new List<historyItem>();
     public static int[] zodiacBeast = new int[12];
-
+    public static bool firstTime;
     public static void GeneratePlayerData()
     {
         phoneNumber = "0123456789";
         name = "Dummy Player";
         userTier = 0;
         shakeTurn = 500;
+        firstTime = true;
     }
 
 
