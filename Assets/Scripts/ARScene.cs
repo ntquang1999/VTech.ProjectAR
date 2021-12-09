@@ -15,10 +15,30 @@ public class ARScene : MonoBehaviour
     public PlayerController controller;
     PlacedObject placedObject;
     public bool isFinishedPlaying = false;
+    public Text soLuot;
+    public Button xinQueBtn;
+    AudioController audioController;
+    public GameObject musicBtn;
+    public GameObject muteBtn;
+
+    private void Start()
+    {
+        audioController = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioController>();
+        if(audioController.getState())
+        {
+            musicBtn.SetActive(true);
+            muteBtn.SetActive(false);
+        }
+        else
+        {
+            musicBtn.SetActive(false);
+            muteBtn.SetActive(true);
+        }
+    }
 
     void Update()
     {
-
+        soLuot.text = PlayerData.shakeTurn.ToString();
     }
 
     public void showCanvas()
@@ -29,6 +49,7 @@ public class ARScene : MonoBehaviour
     public void reset()
     {
         placedObject.reset();
+        xinQueBtn.interactable = true;
     }
     public void loadScene(int index)
     {
@@ -37,11 +58,24 @@ public class ARScene : MonoBehaviour
 
     public void shake()
     {
-        if (controller.objectPlaced)
+
+        if (controller.objectPlaced && PlayerData.shakeTurn > 0)
         {
             placedObject = GameObject.FindGameObjectWithTag("PlacedObject").GetComponent<PlacedObject>();
-            placedObject.shake();  
+            placedObject.shake();
+            PlayerData.shakeTurn--;
+            xinQueBtn.interactable = false;
         }
-    }    
+    }  
+    
+    public void mute()
+    {
+        audioController.mute();
+    }
+
+    public void unmute()
+    {
+        audioController.unmute();
+    }
 
 }

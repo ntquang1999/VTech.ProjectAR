@@ -11,12 +11,17 @@ public class QueBoi : MonoBehaviour
     Sprite[] queBoi = new Sprite[22];
     string[] desc = new string[22];
     public Text queDesc;
-    public ParticleSystem particle;
+    //public ParticleSystem particle;
+    GameObject particles;
+    GameObject ongQue;
+    public bool AR = false;
 
     private void Awake()
     {
         getQueBoiImage();
         getString();
+        particles = GameObject.FindGameObjectWithTag("particles");
+        ongQue = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnEnable()
@@ -26,9 +31,13 @@ public class QueBoi : MonoBehaviour
         gameObject.GetComponent<Image>().SetNativeSize();
         gameObject.transform.localScale = Vector3.one * (queBoiIndex <= 11 ? 2 : 1);
         queDesc.text = GameData.queBoiDesc[queBoiIndex];
-        saveQue();
+        saveQue();   
+    }
 
-       
+    private void OnDisable()
+    {
+        particles.SetActive(false);
+        ongQue.SetActive(true);
     }
 
     // Update is called once per frame

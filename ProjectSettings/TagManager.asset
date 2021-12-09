@@ -11,6 +11,8 @@ TagManager:
   - OngQue
   - PlacedObject
   - AR
+  - particles
+  - audio
   layers:
   - Default
   - TransparentFX
