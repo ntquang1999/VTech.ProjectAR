@@ -26,11 +26,13 @@ public class MainScene : MonoBehaviour
     {
         gameController = FindObjectOfType<GameController>();
         theLe.text = GameData.theLe;
-        GameData.GenerateGameData();
-        PlayerData.GeneratePlayerData();
-        if(PlayerData.firstTime)
+        //GameData.GenerateGameData();
+        //PlayerData.GeneratePlayerData();
+        
+        if (PlayerData.firstTime)
         {
             tutorial.SetActive(true);
+            
         }
         audioController = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioController>();
         if (audioController.getState())
@@ -49,6 +51,7 @@ public class MainScene : MonoBehaviour
     void Update()
     {
         soLuotLacQue.text =PlayerData.shakeTurn.ToString();
+
         waitTime -= Time.deltaTime;
         if (shaking && waitTime<=0)
         {

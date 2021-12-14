@@ -15,6 +15,8 @@ public class QueBoi : MonoBehaviour
     GameObject particles;
     GameObject ongQue;
     public bool AR = false;
+    [SerializeField] GameObject title;
+    [SerializeField] GameObject shadow;
 
     private void Awake()
     {
@@ -29,7 +31,17 @@ public class QueBoi : MonoBehaviour
         queBoiIndex = Random.Range(0, 21);
         gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
         gameObject.GetComponent<Image>().SetNativeSize();
-        gameObject.transform.localScale = Vector3.one * (queBoiIndex <= 11 ? 2 : 1);
+        if(queBoiIndex <= 11)
+        {
+            gameObject.transform.localScale = Vector3.one * 2;
+        }
+        else
+        {
+            gameObject.transform.localScale = Vector3.one;
+            title.SetActive(false);
+            shadow.SetActive(false);
+        }
+        //gameObject.transform.localScale = Vector3.one * (queBoiIndex <= 11 ? 2 : 1);
         queDesc.text = GameData.queBoiDesc[queBoiIndex];
         saveQue();   
     }
@@ -38,6 +50,8 @@ public class QueBoi : MonoBehaviour
     {
         particles.SetActive(false);
         ongQue.SetActive(true);
+        title.SetActive(true);
+        shadow.SetActive(true);
     }
 
     // Update is called once per frame

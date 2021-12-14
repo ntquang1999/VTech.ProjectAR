@@ -21,7 +21,8 @@ public class Tutorials : MonoBehaviour
     {
         if(PlayerData.firstTime)
         {
-            step = 8;
+            step = 6;
+            PlayerData.firstTime = false;
         }
     }
 
@@ -30,37 +31,37 @@ public class Tutorials : MonoBehaviour
     {
         switch(step)
         {
-            case 8:
+            case 6:
                 xinQue.transform.parent = gameObject.transform;
+                xinQue.GetComponent<Button>().enabled = false;
                 desc.text = GameData.tutorialDesc[0];
                 break;
-            case 7:
+            case 5:
                 BST.transform.parent = gameObject.transform;
+                BST.GetComponent<Button>().enabled = false;
+                desc.fontSize = 38;
                 desc.text = GameData.tutorialDesc[1];
                 break;
-            case 6:
-                LichSu.transform.parent = gameObject.transform;
-                desc.text = GameData.tutorialDesc[2];
-                break;
-            case 5:
-                BXH.transform.parent = gameObject.transform;
-                desc.text = GameData.tutorialDesc[3];
-                break;
             case 4:
-                MoiBan.transform.parent = gameObject.transform;
-                desc.text = GameData.tutorialDesc[4];
-                break;
+                LichSu.transform.parent = gameObject.transform;
+                LichSu.GetComponent<Button>().enabled = false;
+                desc.text = GameData.tutorialDesc[2];
+                break;            
             case 3:
-                Share.transform.parent = gameObject.transform;
-                desc.text = GameData.tutorialDesc[5];
+                MoiBan.transform.parent = gameObject.transform;
+                MoiBan.GetComponent<Button>().enabled = false;
+                desc.text = GameData.tutorialDesc[3];
                 break;
             case 2:
                 TheLe.transform.parent = gameObject.transform;
-                desc.text = GameData.tutorialDesc[6];
+                TheLe.GetComponent<Button>().enabled = false;
+                desc.text = GameData.tutorialDesc[4];
                 break;
             case 1:
                 AR.transform.parent = gameObject.transform;
-                desc.text = GameData.tutorialDesc[7];
+                AR.GetComponent<Button>().enabled = false;
+                desc.fontSize = 38;
+                desc.text = GameData.tutorialDesc[5];
                 break;
             case 0:
                 gameObject.SetActive(false);
@@ -82,10 +83,16 @@ public class Tutorials : MonoBehaviour
         BST.transform.parent = menuCanvas.transform;
         LichSu.transform.parent = menuCanvas.transform;
         MoiBan.transform.parent = menuCanvas.transform;
-        TheLe.transform.parent = menuCanvas.transform;
-        BXH.transform.parent = menuCanvas.transform;
-        Share.transform.parent = menuCanvas.transform;
+        TheLe.transform.parent = menuCanvas.transform;        
         AR.transform.parent = menuCanvas.transform;
+        xinQue.GetComponent<Button>().enabled = true;
+        BST.GetComponent<Button>().enabled = true;
+        LichSu.GetComponent<Button>().enabled = true;
+        TheLe.GetComponent<Button>().enabled = true;
+        AR.GetComponent<Button>().enabled = true;
+        MoiBan.GetComponent<Button>().enabled = true;
+
+        desc.fontSize = 40;
         step--;
     }
 
