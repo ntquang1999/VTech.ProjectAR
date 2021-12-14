@@ -11,6 +11,15 @@ public class LichSuController : MonoBehaviour
     const int MAX_HISTORY_ITEM = 25;
     public GameObject menuObject;
 
+    private void Awake()
+    {
+        menuObject = GameObject.FindGameObjectWithTag("menu");
+    }
+
+    public void back()
+    {
+        menuObject.GetComponent<MainScene>().back();
+    }
     private void OnEnable()
     {
         scroll.content.anchoredPosition = new Vector2(scroll.content.anchoredPosition.x, 0);
@@ -38,6 +47,7 @@ public class LichSuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        menuObject = GameObject.FindGameObjectWithTag("menu");
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             menuObject.SetActive(true);

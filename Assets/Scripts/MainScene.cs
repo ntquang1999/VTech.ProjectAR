@@ -20,11 +20,13 @@ public class MainScene : MonoBehaviour
     public GameObject musicBtn;
     public GameObject muteBtn;
     public GameObject tutorial;
+    public GameObject menu;
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = FindObjectOfType<GameController>();
+        //theLe = GameObject.FindGameObjectWithTag("thele").GetComponent<Text>();
         theLe.text = GameData.theLe;
         //GameData.GenerateGameData();
         //PlayerData.GeneratePlayerData();
@@ -100,5 +102,10 @@ public class MainScene : MonoBehaviour
         UniClipboard.SetText("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         Application.OpenURL(UniClipboard.GetText());
     }    
+
+    public void back()
+    {
+        menu.SetActive(true);
+    }
 
 }

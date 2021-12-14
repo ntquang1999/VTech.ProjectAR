@@ -9,6 +9,16 @@ public class BangXepHangController : MonoBehaviour
     public List<Text> zodiacBeastCount = new List<Text>();
     public GameObject menuObject;
 
+    private void Awake()
+    {
+        menuObject = GameObject.FindGameObjectWithTag("menu");
+    }
+
+    public void back()
+    {
+        menuObject.GetComponent<MainScene>().back();
+    }
+
     private void OnEnable()
    {
         for(int i=0; i<10;i++)
@@ -25,7 +35,8 @@ public class BangXepHangController : MonoBehaviour
    
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        menuObject = GameObject.FindGameObjectWithTag("menu");
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             menuObject.SetActive(true);
             gameObject.SetActive(false);

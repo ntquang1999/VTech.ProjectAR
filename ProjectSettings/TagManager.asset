@@ -13,6 +13,8 @@ TagManager:
   - AR
   - particles
   - audio
+  - menu
+  - thele
   layers:
   - Default
   - TransparentFX
