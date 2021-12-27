@@ -8,8 +8,8 @@ public class QueBoi : MonoBehaviour
 
 
     public int queBoiIndex = 0;
-    Sprite[] queBoi = new Sprite[22];
-    string[] desc = new string[22];
+    Sprite[] queBoi = new Sprite[52];
+    string[] desc = new string[52];
     public Text queDesc;
     //public ParticleSystem particle;
     GameObject particles;
@@ -27,8 +27,9 @@ public class QueBoi : MonoBehaviour
     }
 
     private void OnEnable()
-    {       
-        queBoiIndex = Random.Range(0, 21);
+    {
+        StartCoroutine(APIController.Roll_Call());
+        queBoiIndex = Random.Range(0, 51);
         gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
         gameObject.GetComponent<Image>().SetNativeSize();
         if(queBoiIndex <= 11)
@@ -37,7 +38,7 @@ public class QueBoi : MonoBehaviour
         }
         else
         {
-            gameObject.transform.localScale = Vector3.one;
+            gameObject.transform.localScale = Vector3.one * 0.8f;
             title.SetActive(false);
             shadow.SetActive(false);
         }
@@ -84,6 +85,37 @@ public class QueBoi : MonoBehaviour
         queBoi[19] = Resources.Load<Sprite>("tai_loc");
         queBoi[20] = Resources.Load<Sprite>("vui_ve");
         queBoi[21] = Resources.Load<Sprite>("vuong_phat");
+        queBoi[22] = Resources.Load<Sprite>("anlanh");
+        queBoi[23] = Resources.Load<Sprite>("anyen");
+        queBoi[24] = Resources.Load<Sprite>("daian");
+        queBoi[25] = Resources.Load<Sprite>("daicat");
+        queBoi[26] = Resources.Load<Sprite>("dailoc");
+        queBoi[27] = Resources.Load<Sprite>("dailoi");
+        queBoi[28] = Resources.Load<Sprite>("daiphu");
+        queBoi[29] = Resources.Load<Sprite>("daiphuc");
+        queBoi[30] = Resources.Load<Sprite>("daiquy");
+        queBoi[31] = Resources.Load<Sprite>("daloc");
+        queBoi[32] = Resources.Load<Sprite>("daphuc");
+        queBoi[33] = Resources.Load<Sprite>("datho");
+        queBoi[34] = Resources.Load<Sprite>("doantu");
+        queBoi[35] = Resources.Load<Sprite>("hanhoan");
+        queBoi[36] = Resources.Load<Sprite>("hoadao");
+        queBoi[37] = Resources.Load<Sprite>("hoamai");
+        queBoi[38] = Resources.Load<Sprite>("phatloc");
+        queBoi[39] = Resources.Load<Sprite>("phattai");
+        queBoi[40] = Resources.Load<Sprite>("quecan");
+        queBoi[41] = Resources.Load<Sprite>("quecans");
+        queBoi[42] = Resources.Load<Sprite>("quechan");
+        queBoi[43] = Resources.Load<Sprite>("quedoai");
+        queBoi[44] = Resources.Load<Sprite>("quekham");
+        queBoi[45] = Resources.Load<Sprite>("quekhon");
+        queBoi[46] = Resources.Load<Sprite>("quely");
+        queBoi[47] = Resources.Load<Sprite>("queton");
+        queBoi[48] = Resources.Load<Sprite>("truongsinh");
+        queBoi[49] = Resources.Load<Sprite>("tuongan");
+        queBoi[50] = Resources.Load<Sprite>("vantho");
+        queBoi[51] = Resources.Load<Sprite>("yenbinh");
+
     }
 
     void getString()

@@ -18,6 +18,7 @@ public class BoSuTapController : MonoBehaviour
     }
     public void OnEnable()
     {
+        StartCoroutine(APIController.Collection_Call());
         for(int i = 0; i<12;i++)
         {
             lockImg[i].SetActive(PlayerData.zodiacBeast[i] == 0);

@@ -21,6 +21,7 @@ public class BangXepHangController : MonoBehaviour
 
     private void OnEnable()
    {
+        StartCoroutine(APIController.Rank_Call());
         for(int i=0; i<10;i++)
         {
             phoneNumber[i].text = GameData.rankList[i].number;

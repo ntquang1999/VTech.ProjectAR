@@ -22,6 +22,7 @@ public class WelcomeScene : MonoBehaviour
         GameData.GenerateGameData();
         //LoadMain();
         StartCoroutine(LoadMainScene());
+        StartCoroutine(APIController.InitiateAPI());
     }
 
     private IEnumerator LoadMainScene()

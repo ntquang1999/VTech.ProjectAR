@@ -22,12 +22,15 @@ public class LichSuController : MonoBehaviour
     }
     private void OnEnable()
     {
+        StartCoroutine(APIController.History_Call());
         scroll.content.anchoredPosition = new Vector2(scroll.content.anchoredPosition.x, 0);
         for (int i= PlayerData.historyItemList.Count-1; i >= 0 ; i--)
         {
             GameObject go2 = Instantiate(go, list);
             go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("History/" + PlayerData.historyItemList[i].ID);
             go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().SetNativeSize();
+            if(PlayerData.historyItemList[i].ID>=22)
+                go2.transform.GetChild(0).GetChild(0).localScale = Vector3.one * 0.2f;
             //int temp = 
             go2.transform.GetChild(1).GetComponent<Text>().text 
                 = "Bạn nhận được phần quà số " + (PlayerData.historyItemList[i].ID+1) + " lúc " 

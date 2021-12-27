@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using SimpleJSON;
 
 public class MainScene : MonoBehaviour
 {
@@ -47,6 +49,7 @@ public class MainScene : MonoBehaviour
             musicBtn.SetActive(false);
             muteBtn.SetActive(true);
         }
+
     }
 
     // Update is called once per frame
