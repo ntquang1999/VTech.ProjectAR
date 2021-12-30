@@ -24,12 +24,24 @@ public class MainScene : MonoBehaviour
     public GameObject tutorial;
     public GameObject menu;
 
+
+
+    private void Awake()
+    {
+        StartCoroutine(APIController.InitiateAPI((inited) =>
+        {
+            StartCoroutine(APIController.GetTurn_Call((completed) => {}));
+            StartCoroutine(APIController.Rule_Call());
+
+        }));
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         gameController = FindObjectOfType<GameController>();
         //theLe = GameObject.FindGameObjectWithTag("thele").GetComponent<Text>();
-        theLe.text = GameData.theLe;
+        
         //GameData.GenerateGameData();
         //PlayerData.GeneratePlayerData();
         
@@ -56,7 +68,7 @@ public class MainScene : MonoBehaviour
     void Update()
     {
         soLuotLacQue.text =PlayerData.shakeTurn.ToString();
-
+        theLe.text = GameData.theLe;
         waitTime -= Time.deltaTime;
         if (shaking && waitTime<=0)
         {
@@ -71,18 +83,22 @@ public class MainScene : MonoBehaviour
 
     public void XinQue()
     {
-        if (PlayerData.shakeTurn > 0)
+        StartCoroutine(APIController.GetTurn_Call((completed) => 
         {
+            if (PlayerData.shakeTurn > 0)
+            {
+                StartCoroutine(APIController.Roll_Call());
+                ongque.SetInteger("shake", Random.Range(1, 3));
+                //queBoiCanvas.gameObject.SetActive(true);
+                //PlayerData.shakeTurn--;
+                shaking = true;
+                waitTime = 2f;
+                xinQueBtn.interactable = false;
+                particles.SetActive(true);
 
-            ongque.SetInteger("shake", Random.Range(1,3));
-            //queBoiCanvas.gameObject.SetActive(true);
-            PlayerData.shakeTurn--;
-            shaking = true;
-            waitTime = 2f;
-            xinQueBtn.interactable = false;
-            particles.SetActive(true);
-            
-        }                 
+            }
+        }));
+                     
     }
 
     public void loadScene(int index)

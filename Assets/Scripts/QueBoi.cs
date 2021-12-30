@@ -28,7 +28,7 @@ public class QueBoi : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(APIController.Roll_Call());
+        
         queBoiIndex = Random.Range(0, 51);
         gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
         gameObject.GetComponent<Image>().SetNativeSize();
@@ -43,7 +43,7 @@ public class QueBoi : MonoBehaviour
             shadow.SetActive(false);
         }
         //gameObject.transform.localScale = Vector3.one * (queBoiIndex <= 11 ? 2 : 1);
-        queDesc.text = GameData.queBoiDesc[queBoiIndex];
+        queDesc.text = GameData.queBoiDescReal;
         saveQue();   
     }
 

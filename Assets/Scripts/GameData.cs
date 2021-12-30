@@ -20,6 +20,7 @@ public static class GameData
 
     public static List<playerProfile> rankList = new List<playerProfile>();
     public static string theLe;
+    public static string queBoiDescReal;
     public static string[] queBoiDesc = new string[] {
         "Bạn đã nhận được linh thú Tí tượng trưng cho một con chuột. Hay tiếp tục sưu tập thêm và nhận thưởng nhé!",
         "Bạn đã nhận được linh thú Sửu tượng trưng cho một con trâu. Hay tiếp tục sưu tập thêm và nhận thưởng nhé!",
@@ -128,9 +129,6 @@ public static class GameData
             rankList.Add(profile);
         }
         
-        theLe = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." +
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." +
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
         
         //for (int i = 0; i < 22; i++)
         //{

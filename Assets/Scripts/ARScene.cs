@@ -58,14 +58,18 @@ public class ARScene : MonoBehaviour
 
     public void shake()
     {
-
-        if (controller.objectPlaced && PlayerData.shakeTurn > 0)
+        StartCoroutine(APIController.GetTurn_Call((completed) =>
         {
-            placedObject = GameObject.FindGameObjectWithTag("PlacedObject").GetComponent<PlacedObject>();
-            placedObject.shake();
-            PlayerData.shakeTurn--;
-            xinQueBtn.interactable = false;
-        }
+            if (controller.objectPlaced && PlayerData.shakeTurn > 0)
+            {
+                placedObject = GameObject.FindGameObjectWithTag("PlacedObject").GetComponent<PlacedObject>();
+                placedObject.shake();
+                //PlayerData.shakeTurn--;
+                //PlayerData.shakeTurn++;
+                xinQueBtn.interactable = false;
+            }
+        }));
+        
     }  
     
     public void mute()
