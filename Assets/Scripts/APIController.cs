@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
@@ -66,6 +66,8 @@ public static class APIController
             {               
                 PlayerData.shakeTurn = json["data"]["total_turn"];
                 GameData.queBoiDescReal = json["data"]["desc"].Value;
+                GameData.queBoiIndex = codenToIndex(json["data"]["code"].Value);
+                //GameData.queBoiDescReal = json["data"]["desc"].Value;
                 Debug.LogError(GameData.queBoiDescReal);
             }
             else
@@ -76,29 +78,53 @@ public static class APIController
         }
     }
 
-    public static IEnumerator History_Call()
+    public static IEnumerator History_Call(System.Action<bool> onCompleted)
     {
-        form.AddField("data", "AR");
-        UnityWebRequest www = UnityWebRequest.Post("http://fishhunter.ugame.vn/demo_api/api.php", form);
-
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        WWWForm form = new WWWForm();
+        form.AddField("page", "0");
+        form.AddField("pageSize", "20");
+        form.AddField("programCode", "LACQUEAR");
+        form.AddField("command", "rollHistory");
+        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/rollHistory", form))
         {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            var json = JSON.Parse(www.downloadHandler.text);
-            if (json["errorCode"].Value == "0")
+            //Debug.LogError("Bearer " + token);
+            www.SetRequestHeader("Authorization", "Bearer " + token);
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
             {
-                //Debug.LogError(json["data"]["accessToken"].Value);
+                Debug.Log(www.error);
             }
             else
             {
-                //Debug.LogError(json["message"].Value);
-            }
+                var json = JSON.Parse(www.downloadHandler.text);
+                if (json["errorCode"].Value == "0")
+                {
+                    Debug.LogError(json["data"]["gifts"][0]);
+                    PlayerData.historyItemList.Clear();
+                    int maxHistory = json["data"]["total_gift"];
+                    if (maxHistory > 20)
+                        maxHistory = 20;
+                    for (int i=maxHistory-1; i>= 0;i--)
+                    {
+                        historyItem newItem = new historyItem();
+                        newItem.ID = codenToIndex(json["data"]["gifts"][i]["giftCode"]) + 1;
+                        newItem.name = json["data"]["gifts"][i]["giftName"].Value;
+                        if (newItem.ID == 91)
+                            newItem.name = "Quẻ May Mắn";
+                        newItem.time = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm:ss");
+                        newItem.date = System.DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy");
+                        PlayerData.historyItemList.Add(newItem);
+                    }
+                    onCompleted?.Invoke(true);
+                }
+                else
+                {
+                    Debug.LogError(json["message"].Value);
+                    onCompleted?.Invoke(true);
+                }
 
+            }
         }
     }
 
@@ -128,12 +154,16 @@ public static class APIController
         }
     }
 
-    public static IEnumerator Collection_Call()
+    public static IEnumerator Collection_Call(System.Action<bool> onCompleted)
     {
-        form.AddField("data", "AR");
-        UnityWebRequest www = UnityWebRequest.Post("http://fishhunter.ugame.vn/demo_api/api.php", form);
+        WWWForm form = new WWWForm();
+        form.AddField("programCode", "LACQUEAR");
+        form.AddField("command", "getInsertImg");
+        UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/getInsertImg", form);
 
+        www.SetRequestHeader("Authorization", "Bearer " + token);
         yield return www.SendWebRequest();
+
 
         if (www.result != UnityWebRequest.Result.Success)
         {
@@ -144,39 +174,57 @@ public static class APIController
             var json = JSON.Parse(www.downloadHandler.text);
             if (json["errorCode"].Value == "0")
             {
-                //Debug.LogError(json["data"]["accessToken"].Value);
+                foreach(JSONNode element in json["data"])
+                {
+                    int index = codenToIndex(element["code"]);
+                    if (index <= 12)
+                        PlayerData.zodiacBeast[index] = element["total"];
+                }    
+                onCompleted?.Invoke(true);
             }
             else
             {
-                //Debug.LogError(json["message"].Value);
+                Debug.LogError(json["message"].Value);
+                onCompleted?.Invoke(false);
             }
 
         }
     }
 
-    public static IEnumerator Share_Call()
+    public static IEnumerator Share_Call(string number, System.Action<bool> onCompleted)
     {
-        form.AddField("data", "AR");
-        UnityWebRequest www = UnityWebRequest.Post("http://fishhunter.ugame.vn/demo_api/api.php", form);
-
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        WWWForm form = new WWWForm();
+        form.AddField("programCode", "LACQUEAR");
+        form.AddField("command", "addFriend");
+        form.AddField("frsMsisdn", number);
+        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/addFriend", form))
         {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            var json = JSON.Parse(www.downloadHandler.text);
-            if (json["errorCode"].Value == "0")
+            //Debug.LogError("Bearer " + token);
+            www.SetRequestHeader("Authorization", "Bearer " + token);
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
             {
-                //Debug.LogError(json["data"]["accessToken"].Value);
+                Debug.LogError(www.error);
             }
             else
             {
-                //Debug.LogError(json["message"].Value);
-            }
+                var json = JSON.Parse(www.downloadHandler.text);
+                Debug.LogError(json["errorCode"].Value);
+                if (json["errorCode"].Value == "57")
+                {
+                    Debug.LogError(json["message"].Value);
+                    GameData.ToastMessage = json["message"].Value;
+                    onCompleted?.Invoke(true);
+                }
+                else
+                {
+                    Debug.LogError(json["message"].Value);
+                    GameData.ToastMessage = json["message"].Value;
+                    onCompleted?.Invoke(true);
+                }
 
+            }
         }
     }
 
@@ -187,7 +235,7 @@ public static class APIController
         form.AddField("command", "getTurn");
         using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/getTurn", form))
         {
-            Debug.LogError("Bearer " + token);
+           // Debug.LogError("Bearer " + token);
             www.SetRequestHeader("Authorization", "Bearer " + token);
             yield return www.SendWebRequest();
 
@@ -249,6 +297,18 @@ public static class APIController
             }
         }
 
+    }
+
+    public static int codenToIndex(string code)
+    { int index = 0;
+        foreach(string element in GameData.queBoiCODE)
+        {
+            if (code == element)
+                return index;
+            else index++;
+        }
+        GameData.queBoiDescReal = "Chúc bạn may mắn lần sau!";
+        return 90;
     }
 
 }

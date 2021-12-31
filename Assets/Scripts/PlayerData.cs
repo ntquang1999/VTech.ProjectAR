@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public struct historyItem
 {
     public int ID;
+    public string name;
     public string time;
     public string date;
 }

@@ -23,6 +23,7 @@ public class MainScene : MonoBehaviour
     public GameObject muteBtn;
     public GameObject tutorial;
     public GameObject menu;
+    public Toast toast;
 
 
 
@@ -125,6 +126,16 @@ public class MainScene : MonoBehaviour
     public void back()
     {
         menu.SetActive(true);
+    }
+
+    public void Unload()
+    {
+        Application.Unload();
+    }
+
+    public void showToastMessage()
+    {
+        toast.show(GameData.ToastMessage);
     }
 
 }

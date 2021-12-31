@@ -8,7 +8,7 @@ public class QueBoi : MonoBehaviour
 
 
     public int queBoiIndex = 0;
-    Sprite[] queBoi = new Sprite[52];
+    Sprite[] queBoi = new Sprite[100];
     string[] desc = new string[52];
     public Text queDesc;
     //public ParticleSystem particle;
@@ -29,7 +29,7 @@ public class QueBoi : MonoBehaviour
     private void OnEnable()
     {
         
-        queBoiIndex = Random.Range(0, 51);
+        queBoiIndex = GameData.queBoiIndex;
         gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
         gameObject.GetComponent<Image>().SetNativeSize();
         if(queBoiIndex <= 11)
@@ -115,6 +115,17 @@ public class QueBoi : MonoBehaviour
         queBoi[49] = Resources.Load<Sprite>("tuongan");
         queBoi[50] = Resources.Load<Sprite>("vantho");
         queBoi[51] = Resources.Load<Sprite>("yenbinh");
+        queBoi[52] = Resources.Load<Sprite>("nham_dan");
+        queBoi[53] = Resources.Load<Sprite>("nham_dan");
+        queBoi[54] = Resources.Load<Sprite>("nham_dan");
+        queBoi[55] = Resources.Load<Sprite>("cattuong");
+        queBoi[56] = Resources.Load<Sprite>("daihuu");
+        queBoi[57] = Resources.Load<Sprite>("thuancan");
+        queBoi[58] = Resources.Load<Sprite>("phucloc");
+        queBoi[59] = Resources.Load<Sprite>("hanhthong");
+        queBoi[60] = Resources.Load<Sprite>("phuquy");
+        queBoi[61] = Resources.Load<Sprite>("tai_loc");
+        queBoi[90] = Resources.Load<Sprite>("may_man");
 
     }
 

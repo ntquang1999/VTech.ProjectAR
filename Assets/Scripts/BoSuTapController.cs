@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoSuTapController : MonoBehaviour
 {
 
     public List<GameObject> lockImg = new List<GameObject>();
+    public List<Text> count = new List<Text>();
     public GameObject menuObject;
     private void Start()
     {
@@ -18,11 +20,15 @@ public class BoSuTapController : MonoBehaviour
     }
     public void OnEnable()
     {
-        StartCoroutine(APIController.Collection_Call());
-        for(int i = 0; i<12;i++)
-        {
-            lockImg[i].SetActive(PlayerData.zodiacBeast[i] == 0);
-        }
+        StartCoroutine(APIController.Collection_Call((completed) => {
+            for (int i = 0; i < 12; i++)
+            {
+                lockImg[i].SetActive(PlayerData.zodiacBeast[i] == 0);
+                if(PlayerData.zodiacBeast[i]>0)
+                    count[i].text = PlayerData.zodiacBeast[i].ToString();
+            }
+        }));
+
     }
 
    

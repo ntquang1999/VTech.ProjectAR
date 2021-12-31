@@ -7,8 +7,9 @@ public class Toast : MonoBehaviour
 {
     public Text text;
 
-    public void show()
+    public void show(string message)
     {
+        text.text = message;
         this.GetComponent<Animator>().Play("ToastAnim",0,0);
     }    
 }
