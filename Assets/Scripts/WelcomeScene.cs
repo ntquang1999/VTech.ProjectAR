@@ -13,6 +13,7 @@ public class WelcomeScene : MonoBehaviour
 
     [Range(0.0f, 1.0f)]
     public float sliderValue;
+    bool isDone = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,14 @@ public class WelcomeScene : MonoBehaviour
         PlayerData.GeneratePlayerData();
         GameData.GenerateGameData();
         //LoadMain();
+        StartCoroutine(APIController.InitiateAPI((inited) =>
+        {
+            StartCoroutine(APIController.GetTurn_Call((completed) => {
+                StartCoroutine(APIController.Rule_Call());
+                isDone = true;
+            }));
+            
+        }));
         StartCoroutine(LoadMainScene());
         
     }
@@ -28,11 +37,23 @@ public class WelcomeScene : MonoBehaviour
     private IEnumerator LoadMainScene()
     {
         var a = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        a.allowSceneActivation = false;
         while (!a.isDone)
         {
-            slider.value = a.progress;
+            slider.value = a.progress*0.9f;
+            Debug.LogError(a.progress);
+            if (a.progress >= 0.9f)
+                if(isDone)
+                {
+                    Debug.LogError("AAAAAAAAAA");
+                    slider.value = 1;
+                    a.allowSceneActivation = true;
+                    //yield return null;
+                }
             yield return null;
         }
+        
+            
         //yield return a;
     }
 

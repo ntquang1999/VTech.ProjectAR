@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlacedObject : MonoBehaviour
 {
     public GameObject tiger;
+    public GameObject ongThe;
     public Animator ongQue;
     public Animator tigerAnim;
     public ARScene arScene;
@@ -28,13 +29,15 @@ public class PlacedObject : MonoBehaviour
     {
         tiger.SetActive(true);
         shaking = true;
-        ongQue.SetBool("shake", true);
+        ongThe.SetActive(false);
+        //ongQue.SetBool("shake", true);
     }
 
     public void reset()
     {
         tiger.SetActive(false);
-        ongQue.SetBool("shake", false);
+        ongThe.SetActive(true);
+        //ongQue.SetBool("shake", false);
     }
 
 }

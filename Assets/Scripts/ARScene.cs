@@ -43,7 +43,10 @@ public class ARScene : MonoBehaviour
 
     public void showCanvas()
     {
-        queBoiCanvas.SetActive(true);
+        StartCoroutine(APIController.Roll_Call((completed) => {
+            queBoiCanvas.SetActive(true);
+        }));
+        
     }
 
     public void reset()
@@ -64,8 +67,6 @@ public class ARScene : MonoBehaviour
             {
                 placedObject = GameObject.FindGameObjectWithTag("PlacedObject").GetComponent<PlacedObject>();
                 placedObject.shake();
-                //PlayerData.shakeTurn--;
-                //PlayerData.shakeTurn++;
                 xinQueBtn.interactable = false;
             }
         }));

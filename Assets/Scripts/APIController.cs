@@ -20,7 +20,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -44,7 +44,7 @@ public static class APIController
             
     }
 
-    public static IEnumerator Roll_Call()
+    public static IEnumerator Roll_Call(System.Action<bool> onCompleted)
     {
         WWWForm form = new WWWForm();
         form.AddField("programCode", "LACQUEAR");
@@ -57,7 +57,7 @@ public static class APIController
         
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(www.error);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
         }
         else
         {
@@ -69,10 +69,12 @@ public static class APIController
                 GameData.queBoiIndex = codenToIndex(json["data"]["code"].Value);
                 //GameData.queBoiDescReal = json["data"]["desc"].Value;
                 Debug.LogError(GameData.queBoiDescReal);
+                onCompleted?.Invoke(true);
             }
             else
             {
                 Debug.LogError(json["message"].Value);
+                onCompleted?.Invoke(false);
             }
 
         }
@@ -93,7 +95,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -112,8 +114,8 @@ public static class APIController
                         newItem.name = json["data"]["gifts"][i]["giftName"].Value;
                         if (newItem.ID == 91)
                             newItem.name = "Quẻ May Mắn";
-                        newItem.time = System.DateTime.UtcNow.ToLocalTime().ToString("HH:mm:ss");
-                        newItem.date = System.DateTime.UtcNow.ToLocalTime().ToString("dd/MM/yyyy");
+                        newItem.time = timeConverter(json["data"]["gifts"][i]["winAt"]);
+                        newItem.date = dateConverter(json["data"]["gifts"][i]["winAt"]);
                         PlayerData.historyItemList.Add(newItem);
                     }
                     onCompleted?.Invoke(true);
@@ -128,29 +130,43 @@ public static class APIController
         }
     }
 
-    public static IEnumerator Rank_Call()
+    public static IEnumerator Rank_Call(System.Action<bool> onCompleted)
     {
-        form.AddField("data", "AR");
-        UnityWebRequest www = UnityWebRequest.Post("http://fishhunter.ugame.vn/demo_api/api.php", form);
-
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        WWWForm form = new WWWForm();
+        form.AddField("page", "0");
+        form.AddField("pageSize", "20");
+        form.AddField("programCode", "LACQUEAR");
+        form.AddField("command", "rollHistory");
+        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/rollHistory", form))
         {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            var json = JSON.Parse(www.downloadHandler.text);
-            if (json["errorCode"].Value == "0")
+            //Debug.LogError("Bearer " + token);
+            www.SetRequestHeader("Authorization", "Bearer " + token);
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
             {
-                //Debug.LogError(json["data"]["accessToken"].Value);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
-                //Debug.LogError(json["message"].Value);
-            }
+                var json = JSON.Parse(www.downloadHandler.text);
+                if (json["errorCode"].Value == "0")
+                {
+                    GameData.rankList.Clear();
+                    for(int i = 0; i<10;i++)
+                    {
+                        playerProfile profile = new playerProfile(convert84to0(json["data"]["gold_table_v2"][i]["username"].Value), json["data"]["gold_table_v2"][i]["point"], i + 1);
+                        GameData.rankList.Add(profile);
+                    }    
+                    onCompleted?.Invoke(true);
+                }
+                else
+                {
+                    Debug.LogError(json["message"].Value);
+                    onCompleted?.Invoke(true);
+                }
 
+            }
         }
     }
 
@@ -167,7 +183,7 @@ public static class APIController
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(www.error);
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
         }
         else
         {
@@ -205,7 +221,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError(www.error);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -241,7 +257,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -281,7 +297,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -309,6 +325,39 @@ public static class APIController
         }
         GameData.queBoiDescReal = "Chúc bạn may mắn lần sau!";
         return 90;
+    }
+
+    public static string convert84to0(string number)
+    {
+        if (number != "")
+            return "0" + number.Substring(2);
+        else return "Chưa xác định";
+    }
+
+    public static string timeConverter(string time)
+    {
+        string year, month, day, hour, minute, second;
+        year = time.Substring(0, 4);
+        month = time.Substring(4, 2);
+        day = time.Substring(6, 2);
+        hour = time.Substring(8, 2);
+        minute = time.Substring(10, 2);
+        second = time.Substring(12, 2);
+
+        return hour + ":" + minute + ":" + second;
+    }
+
+    public static string dateConverter(string time)
+    {
+        string year, month, day, hour, minute, second;
+        year = time.Substring(0, 4);
+        month = time.Substring(4, 2);
+        day = time.Substring(6, 2);
+        hour = time.Substring(8, 2);
+        minute = time.Substring(10, 2);
+        second = time.Substring(12, 2);
+
+        return day + "/" + month + "/" + year;
     }
 
 }

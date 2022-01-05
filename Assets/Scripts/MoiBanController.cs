@@ -8,6 +8,7 @@ public class MoiBanController : MonoBehaviour
 
     public Text sdtbox;
     public GameObject thisCanvas;
+    public GameObject confirmPopup;
     MainScene mainScene;
 
 
@@ -34,7 +35,8 @@ public class MoiBanController : MonoBehaviour
         //Debug.LogError("Lan toa thanh congzzzzzzzz");
         StartCoroutine(APIController.Share_Call(sdt, (completed) => {
             //Debug.LogError("Lan toa thanh cong"); 
-            mainScene.showToastMessage();
+            //mainScene.showToastMessage();
+            confirmPopup.SetActive(true);
             thisCanvas.SetActive(false);
 
         }));

@@ -15,13 +15,13 @@ public class ButtonController : MonoBehaviour
     GameObject goBXH;
     GameObject goBST;
     GameObject goTL;
-    GameObject goIV;
+    public GameObject goIV;
 
     bool haslichsu = false;
     bool hasbxh = false;
     bool hasbst = false;
     bool hasthele = false;
-    bool hasmoiban = false;
+    bool hasmoiban = true;
 
     // Start is called before the first frame update
     void Start()

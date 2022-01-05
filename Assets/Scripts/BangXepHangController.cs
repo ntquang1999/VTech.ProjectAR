@@ -21,12 +21,14 @@ public class BangXepHangController : MonoBehaviour
 
     private void OnEnable()
    {
-        StartCoroutine(APIController.Rank_Call());
-        for(int i=0; i<10;i++)
-        {
-            phoneNumber[i].text = GameData.rankList[i].number;
-            zodiacBeastCount[i].text = GameData.rankList[i].zodiacBeastCount.ToString();
-        }
+        StartCoroutine(APIController.Rank_Call((completed)=> {
+            for (int i = 0; i < 10; i++)
+            {
+                phoneNumber[i].text = GameData.rankList[i].number;
+                zodiacBeastCount[i].text = GameData.rankList[i].zodiacBeastCount.ToString();
+            }
+        }));
+        
     }
     void Start()
     {

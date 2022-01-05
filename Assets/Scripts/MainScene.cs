@@ -29,12 +29,7 @@ public class MainScene : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(APIController.InitiateAPI((inited) =>
-        {
-            StartCoroutine(APIController.GetTurn_Call((completed) => {}));
-            StartCoroutine(APIController.Rule_Call());
 
-        }));
     }
 
     // Start is called before the first frame update
@@ -88,14 +83,16 @@ public class MainScene : MonoBehaviour
         {
             if (PlayerData.shakeTurn > 0)
             {
-                StartCoroutine(APIController.Roll_Call());
-                ongque.SetInteger("shake", Random.Range(1, 3));
-                //queBoiCanvas.gameObject.SetActive(true);
-                //PlayerData.shakeTurn--;
-                shaking = true;
-                waitTime = 2f;
-                xinQueBtn.interactable = false;
-                particles.SetActive(true);
+                StartCoroutine(APIController.Roll_Call((completed)=> {
+                    ongque.SetInteger("shake", Random.Range(1, 3));
+                    //queBoiCanvas.gameObject.SetActive(true);
+                    //PlayerData.shakeTurn--;
+                    shaking = true;
+                    waitTime = 2f;
+                    xinQueBtn.interactable = false;
+                    particles.SetActive(true);
+                }));
+                
 
             }
         }));

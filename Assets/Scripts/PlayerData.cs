@@ -26,8 +26,8 @@ public static class PlayerData
         phoneNumber = "0123456789";
         name = "Dummy Player";
         userTier = 0;
-        shakeTurn = 500;
-        firstTime = true;
+        shakeTurn = 0;
+        firstTime = false;
     }
 
 

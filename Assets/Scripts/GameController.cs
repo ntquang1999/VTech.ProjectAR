@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
 {
     private static GameController instance;
 
+    public GameObject connectError;
+
     private void Awake()
     {
         if (instance == null)
@@ -34,5 +36,10 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(index);
     }
+
+    public void showConnectError()
+    {
+        connectError.SetActive(true);
+    }    
 
 }
