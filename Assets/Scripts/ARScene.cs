@@ -1,3 +1,5 @@
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,10 +45,8 @@ public class ARScene : MonoBehaviour
 
     public void showCanvas()
     {
-        StartCoroutine(APIController.Roll_Call((completed) => {
-            queBoiCanvas.SetActive(true);
-        }));
-        
+        queBoiCanvas.SetActive(true);
+
     }
 
     public void reset()
@@ -66,7 +66,10 @@ public class ARScene : MonoBehaviour
             if (controller.objectPlaced && PlayerData.shakeTurn > 0)
             {
                 placedObject = GameObject.FindGameObjectWithTag("PlacedObject").GetComponent<PlacedObject>();
-                placedObject.shake();
+                StartCoroutine(APIController.Roll_Call((completed) => {
+                    placedObject.shake();
+                }));
+                
                 xinQueBtn.interactable = false;
             }
         }));

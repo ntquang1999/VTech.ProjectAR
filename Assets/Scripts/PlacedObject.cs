@@ -36,7 +36,7 @@ public class PlacedObject : MonoBehaviour
 
     public void shake()
     {
-        for(int i = 0; i<10;i++)
+        for(int i = 0; i<9;i++)
         {
             if (GameData.queBoiIndex == special[i])
                 isSpecial = true;
