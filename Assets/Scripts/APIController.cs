@@ -11,7 +11,7 @@ public static class APIController
     public static IEnumerator InitiateAPI(System.Action<bool> onInited)
     {
         WWWForm formIni = new WWWForm();
-        formIni.AddField("data", "2bmrcgxcc2kvarti821635414922369");
+        formIni.AddField("data", GameData.data);
         formIni.AddField("programCode", "LACQUEAR");
         formIni.AddField("command", "OAuth");
         using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/OAuth", formIni))
@@ -244,6 +244,43 @@ public static class APIController
         }
     }
 
+    public static IEnumerator Confirm_Call(string number, System.Action<bool> onCompleted)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("programCode", "LACQUEAR");
+        form.AddField("command", "addFriend");
+        form.AddField("frsMsisdn", number);
+        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/addFriend", form))
+        {
+            //Debug.LogError("Bearer " + token);
+            www.SetRequestHeader("Authorization", "Bearer " + token);
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+            }
+            else
+            {
+                var json = JSON.Parse(www.downloadHandler.text);
+                Debug.LogError(json["errorCode"].Value);
+                if (json["errorCode"].Value == "57")
+                {
+                    Debug.LogError(json["message"].Value);
+                    GameData.ToastMessage = json["message"].Value;
+                    onCompleted?.Invoke(true);
+                }
+                else
+                {
+                    Debug.LogError(json["message"].Value);
+                    GameData.ToastMessage = json["message"].Value;
+                    onCompleted?.Invoke(true);
+                }
+
+            }
+        }
+    }
+
     public static IEnumerator GetTurn_Call(System.Action<bool> onCompleted)
     {
         WWWForm form = new WWWForm();
@@ -274,6 +311,42 @@ public static class APIController
                     onCompleted?.Invoke(true);
                 }    
                     
+            }
+        }
+
+    }
+
+    public static IEnumerator GetPrize_Call(System.Action<bool> onCompleted)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("programCode", "LACQUEAR");
+        form.AddField("command", "receiveInsertImg");
+        form.AddField("imageCode", "TET2022");
+        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/receiveInsertImg", form))
+        {
+            // Debug.LogError("Bearer " + token);
+            www.SetRequestHeader("Authorization", "Bearer " + token);
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+            }
+            else
+            {
+                var json = JSON.Parse(www.downloadHandler.text);
+                if (json["errorCode"].Value == "0")
+                {
+                    GameData.ToastMessage = json["message"].Value;
+                    onCompleted?.Invoke(true);
+                }
+                else
+                {
+                    Debug.LogError(json["message"].Value);
+                    GameData.ToastMessage = json["message"].Value;
+                    onCompleted?.Invoke(true);
+                }
+
             }
         }
 

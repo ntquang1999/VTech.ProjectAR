@@ -1828,6 +1828,7 @@ MonoBehaviour:
   - {fileID: 8519570536431396373}
   - {fileID: 3880930033911002595}
   menuObject: {fileID: 0}
+  confirmPopup: {fileID: 0}
 --- !u!1 &4792895323757458192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,7 +2271,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4792895323870558200}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4792895323691125816}
+        m_TargetAssemblyTypeName: BoSuTapController, Assembly-CSharp
+        m_MethodName: getPrize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4792895323870558202
 MonoBehaviour:
   m_ObjectHideFlags: 0

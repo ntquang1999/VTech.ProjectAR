@@ -23,6 +23,7 @@ public static class GameData
     public static string ToastMessage;
     public static int queBoiIndex;
     public static string queBoiDescReal;
+    public static string data = "2bmrcgxcc2kvarti821635414922369";
     public static string[] queBoiCODE = new string[]
     {
         "CHUOT",

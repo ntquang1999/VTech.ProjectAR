@@ -10,6 +10,9 @@ public class PlacedObject : MonoBehaviour
     public Animator tigerAnim;
     public ARScene arScene;
     bool shaking = false;
+    bool isSpecial = false;
+
+    int[] special = {16,19,17,15,14,12,34,25,60};
 
     private void Start()
     {
@@ -18,26 +21,42 @@ public class PlacedObject : MonoBehaviour
 
     private void Update()
     {
-        if (shaking && tigerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (shaking && isSpecial &&tigerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             arScene.showCanvas();
             shaking = false;
-        }        
+        }
+
+        if (shaking && ongQue.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            arScene.showCanvas();
+            shaking = false;
+        }
     }
 
     public void shake()
     {
-        tiger.SetActive(true);
+        for(int i = 0; i<10;i++)
+        {
+            if (GameData.queBoiIndex == special[i])
+                isSpecial = true;
+        }
+        
         shaking = true;
-        ongThe.SetActive(false);
-        //ongQue.SetBool("shake", true);
+        
+        if (isSpecial)
+        {
+            tiger.SetActive(true);           
+            ongThe.SetActive(false);
+        }
+        else ongQue.SetBool("shake", true);
     }
 
     public void reset()
     {
         tiger.SetActive(false);
         ongThe.SetActive(true);
-        //ongQue.SetBool("shake", false);
+        ongQue.SetBool("shake", false);
     }
 
 }

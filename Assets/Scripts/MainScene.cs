@@ -24,6 +24,7 @@ public class MainScene : MonoBehaviour
     public GameObject tutorial;
     public GameObject menu;
     public Toast toast;
+    public GameObject confirmPopup;
 
 
 
@@ -133,6 +134,11 @@ public class MainScene : MonoBehaviour
     public void showToastMessage()
     {
         toast.show(GameData.ToastMessage);
+    }
+
+    public void showPopup()
+    {
+        confirmPopup.SetActive(true);
     }
 
 }

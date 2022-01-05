@@ -40,6 +40,12 @@ public class GameController : MonoBehaviour
     public void showConnectError()
     {
         connectError.SetActive(true);
-    }    
+    }  
+    
+    public void receiveData(string receive)
+    {
+        GameData.data = receive;
+        Debug.LogError(receive);
+    }
 
 }

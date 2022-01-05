@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +25,7 @@ public class BoSuTapController : MonoBehaviour
             {
                 lockImg[i].SetActive(PlayerData.zodiacBeast[i] == 0);
                 if(PlayerData.zodiacBeast[i]>0)
-                    count[i].text = PlayerData.zodiacBeast[i].ToString();
+                    count[i].text = "x" + PlayerData.zodiacBeast[i].ToString();
             }
         }));
 
@@ -42,4 +42,21 @@ public class BoSuTapController : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void getPrize()
+    {
+        
+        for (int i =0; i<12;i++)
+        {
+            if(PlayerData.zodiacBeast[i] == 0)
+            {
+                GameData.ToastMessage = "Bạn chưa sưu tập đủ, hãy lắc thêm quẻ để sưu tập nhé";
+                return;
+            }
+        }
+        StartCoroutine(APIController.GetPrize_Call((completed) => {
+            menuObject.GetComponent<MainScene>().showPopup();
+
+        }));
+    }    
 }
