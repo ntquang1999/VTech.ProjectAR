@@ -80,6 +80,7 @@ public class MainScene : MonoBehaviour
 
     public void XinQue()
     {
+        xinQueBtn.interactable = false;
         StartCoroutine(APIController.GetTurn_Call((completed) => 
         {
             if (PlayerData.shakeTurn > 0)
@@ -89,12 +90,9 @@ public class MainScene : MonoBehaviour
                     //queBoiCanvas.gameObject.SetActive(true);
                     //PlayerData.shakeTurn--;
                     shaking = true;
-                    waitTime = 2f;
-                    xinQueBtn.interactable = false;
+                    waitTime = 2f;                    
                     particles.SetActive(true);
                 }));
-                
-
             }
         }));
                      

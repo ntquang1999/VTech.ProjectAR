@@ -25,8 +25,11 @@ public class WelcomeScene : MonoBehaviour
         StartCoroutine(APIController.InitiateAPI((inited) =>
         {
             StartCoroutine(APIController.GetTurn_Call((completed) => {
-                StartCoroutine(APIController.Rule_Call());
-                isDone = true;
+                StartCoroutine(APIController.Rule_Call((completed) => {
+                    StartCoroutine(APIController.FirstLogin_Call((completed) => {
+                        isDone = true;
+                    }));
+                }));                
             }));
             
         }));
@@ -41,11 +44,11 @@ public class WelcomeScene : MonoBehaviour
         while (!a.isDone)
         {
             slider.value = a.progress*0.9f;
-            Debug.LogError(a.progress);
+            //Debug.LogError(a.progress);
             if (a.progress >= 0.9f)
                 if(isDone)
                 {
-                    Debug.LogError("AAAAAAAAAA");
+                    //Debug.LogError("AAAAAAAAAA");
                     slider.value = 1;
                     a.allowSceneActivation = true;
                     //yield return null;

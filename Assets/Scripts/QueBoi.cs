@@ -125,7 +125,7 @@ public class QueBoi : MonoBehaviour
         queBoi[59] = Resources.Load<Sprite>("hanhthong");
         queBoi[60] = Resources.Load<Sprite>("phuquy");
         queBoi[61] = Resources.Load<Sprite>("tai_loc");
-        queBoi[90] = Resources.Load<Sprite>("may_man");
+        queBoi[90] = Resources.Load<Sprite>("error");
 
     }
 

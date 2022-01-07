@@ -28,7 +28,7 @@ public static class APIController
                 if (json["errorCode"].Value == "0")
                 {
                     token = json["data"]["accessToken"].Value;
-                    Debug.LogError(token);
+                    //Debug.LogError(token);
                     onInited?.Invoke(true);
                 }
                 else
@@ -68,7 +68,7 @@ public static class APIController
                 GameData.queBoiDescReal = json["data"]["desc"].Value;
                 GameData.queBoiIndex = codenToIndex(json["data"]["code"].Value);
                 //GameData.queBoiDescReal = json["data"]["desc"].Value;
-                Debug.LogError(GameData.queBoiDescReal);
+                //Debug.LogError(GameData.queBoiDescReal);
                 onCompleted?.Invoke(true);
             }
             else
@@ -102,7 +102,7 @@ public static class APIController
                 var json = JSON.Parse(www.downloadHandler.text);
                 if (json["errorCode"].Value == "0")
                 {
-                    Debug.LogError(json["data"]["gifts"][0]);
+                    //Debug.LogError(json["data"]["gifts"][0]);
                     PlayerData.historyItemList.Clear();
                     int maxHistory = json["data"]["total_gift"];
                     if (maxHistory > 20)
@@ -113,7 +113,7 @@ public static class APIController
                         newItem.ID = codenToIndex(json["data"]["gifts"][i]["giftCode"]) + 1;
                         newItem.name = json["data"]["gifts"][i]["giftName"].Value;
                         if (newItem.ID == 91)
-                            newItem.name = "Quẻ May Mắn";
+                            newItem.name = "!!Quẻ khai lỗi!!";
                         newItem.time = timeConverter(json["data"]["gifts"][i]["winAt"]);
                         newItem.date = dateConverter(json["data"]["gifts"][i]["winAt"]);
                         PlayerData.historyItemList.Add(newItem);
@@ -123,7 +123,7 @@ public static class APIController
                 else
                 {
                     Debug.LogError(json["message"].Value);
-                    onCompleted?.Invoke(true);
+                    onCompleted?.Invoke(false);
                 }
 
             }
@@ -163,7 +163,7 @@ public static class APIController
                 else
                 {
                     Debug.LogError(json["message"].Value);
-                    onCompleted?.Invoke(true);
+                    onCompleted?.Invoke(false);
                 }
 
             }
@@ -226,16 +226,16 @@ public static class APIController
             else
             {
                 var json = JSON.Parse(www.downloadHandler.text);
-                Debug.LogError(json["errorCode"].Value);
+                //Debug.LogError(json["errorCode"].Value);
                 if (json["errorCode"].Value == "57")
                 {
-                    Debug.LogError(json["message"].Value);
+                    //Debug.LogError(json["message"].Value);
                     GameData.ToastMessage = json["message"].Value;
                     onCompleted?.Invoke(true);
                 }
                 else
                 {
-                    Debug.LogError(json["message"].Value);
+                    //Debug.LogError(json["message"].Value);
                     GameData.ToastMessage = json["message"].Value;
                     onCompleted?.Invoke(true);
                 }
@@ -248,9 +248,11 @@ public static class APIController
     {
         WWWForm form = new WWWForm();
         form.AddField("programCode", "LACQUEAR");
-        form.AddField("command", "addFriend");
-        form.AddField("frsMsisdn", number);
-        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/addFriend", form))
+        form.AddField("command", "plusTurnV3");
+        form.AddField("type", "2");
+        form.AddField("reason", "lantoa");
+        form.AddField("msisdn", number);
+        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/plusTurnV3", form))
         {
             //Debug.LogError("Bearer " + token);
             www.SetRequestHeader("Authorization", "Bearer " + token);
@@ -263,16 +265,16 @@ public static class APIController
             else
             {
                 var json = JSON.Parse(www.downloadHandler.text);
-                Debug.LogError(json["errorCode"].Value);
+                //Debug.LogError(json["errorCode"].Value);
                 if (json["errorCode"].Value == "57")
                 {
-                    Debug.LogError(json["message"].Value);
+                    //Debug.LogError(json["message"].Value);
                     GameData.ToastMessage = json["message"].Value;
                     onCompleted?.Invoke(true);
                 }
                 else
                 {
-                    Debug.LogError(json["message"].Value);
+                    //Debug.LogError(json["message"].Value);
                     GameData.ToastMessage = json["message"].Value;
                     onCompleted?.Invoke(true);
                 }
@@ -308,7 +310,7 @@ public static class APIController
                 else
                 {
                     Debug.LogError(json["message"].Value);
-                    onCompleted?.Invoke(true);
+                    onCompleted?.Invoke(false);
                 }    
                     
             }
@@ -342,7 +344,7 @@ public static class APIController
                 }
                 else
                 {
-                    Debug.LogError(json["message"].Value);
+                    //Debug.LogError(json["message"].Value);
                     GameData.ToastMessage = json["message"].Value;
                     onCompleted?.Invoke(true);
                 }
@@ -358,7 +360,7 @@ public static class APIController
 
     }
 
-    public static IEnumerator Rule_Call()
+    public static IEnumerator Rule_Call(System.Action<bool> onCompleted)
     {
         WWWForm form = new WWWForm();
         form.AddField("programCode", "LACQUEAR");
@@ -378,11 +380,48 @@ public static class APIController
                 if (json["errorCode"].Value == "0")
                 {
                 
-                    GameData.theLe = json["data"]["content"].Value + "  zzz";
-                    Debug.LogError(GameData.theLe) ;
+                    GameData.theLe = json["data"]["content"].Value;
+                    //Debug.LogError(GameData.theLe) ;
+                    onCompleted?.Invoke(true);
                 }
                 else
                     Debug.LogError(json["message"].Value);
+                    onCompleted?.Invoke(false);
+            }
+        }
+
+    }
+
+    public static IEnumerator FirstLogin_Call(System.Action<bool> onCompleted)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("programCode", "LACQUEAR");
+        form.AddField("command", "checkFirstTimeLogin");
+        using (UnityWebRequest www = UnityWebRequest.Post("https://apiv3.viettel.vn/cgvtapiv2/checkFirstTimeLogin", form))
+        {
+            www.SetRequestHeader("Authorization", "Bearer " + token);
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+            }
+            else
+            {
+                var json = JSON.Parse(www.downloadHandler.text);
+                if (json["errorCode"].Value == "0")
+                {
+
+                    if(json["data"]["firstTime"] == 1)
+                    {
+                        PlayerData.firstTime = true;
+                    }    
+                    //Debug.LogError(GameData.theLe) ;
+                    onCompleted?.Invoke(true);
+                }
+                else
+                    Debug.LogError(json["message"].Value);
+                    onCompleted?.Invoke(false);
             }
         }
 
@@ -396,7 +435,7 @@ public static class APIController
                 return index;
             else index++;
         }
-        GameData.queBoiDescReal = "Chúc bạn may mắn lần sau!";
+        GameData.queBoiDescReal = "API trả về mã bị lỗi, không có trong danh sách!";
         return 90;
     }
 
