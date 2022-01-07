@@ -14,9 +14,21 @@ public class WelcomeScene : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float sliderValue;
     bool isDone = false;
+    bool isLoading = false;
+    float timeout = 10.0f;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
+    {
+        if (GameData.data != null && !isLoading)
+        {
+            Debug.LogError(GameData.data);
+            loadData();
+            isLoading = true;
+        }       
+    }
+
+    void loadData()
     {
         gameController = FindObjectOfType<GameController>();
         PlayerData.GeneratePlayerData();
@@ -27,15 +39,15 @@ public class WelcomeScene : MonoBehaviour
             StartCoroutine(APIController.GetTurn_Call((completed) => {
                 StartCoroutine(APIController.Rule_Call((completed) => {
                     StartCoroutine(APIController.FirstLogin_Call((completed) => {
+
                         isDone = true;
                     }));
-                }));                
+                }));
             }));
-            
+
         }));
         StartCoroutine(LoadMainScene());
-        
-    }
+    }    
 
     private IEnumerator LoadMainScene()
     {

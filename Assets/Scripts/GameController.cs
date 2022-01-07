@@ -23,7 +23,13 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Invoke("Fake", 3);
         Application.targetFrameRate = 60;
+    }
+
+    void Fake()
+    {
+        receiveData("2bmrcgxcc2kvarti821635414922369");
     }
 
     // Update is called once per frame
@@ -45,7 +51,8 @@ public class GameController : MonoBehaviour
     public void receiveData(string receive)
     {
         GameData.data = receive;
-        Debug.LogError(receive);
+        Debug.LogError("Receive: " + receive);
+        Debug.LogError("Receive: " + GameData.data);
     }
 
 }
