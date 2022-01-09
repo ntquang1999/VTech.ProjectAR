@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using SimpleJSON;
+using System;
+using System.Runtime.InteropServices;
+
 
 public class MainScene : MonoBehaviour
 {
@@ -64,6 +67,8 @@ public class MainScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerData.shakeTurn <= 0)
+            xinQueBtn.interactable = false;
         soLuotLacQue.text =PlayerData.shakeTurn.ToString();
         theLe.text = GameData.theLe;
         waitTime -= Time.deltaTime;
@@ -80,13 +85,14 @@ public class MainScene : MonoBehaviour
 
     public void XinQue()
     {
+        AudioController.playShake();
         xinQueBtn.interactable = false;
         StartCoroutine(APIController.GetTurn_Call((completed) => 
         {
             if (PlayerData.shakeTurn > 0)
             {
                 StartCoroutine(APIController.Roll_Call((completed)=> {
-                    ongque.SetInteger("shake", Random.Range(1, 3));
+                    ongque.SetInteger("shake", UnityEngine.Random.Range(1, 3));
                     //queBoiCanvas.gameObject.SetActive(true);
                     //PlayerData.shakeTurn--;
                     shaking = true;
@@ -124,10 +130,15 @@ public class MainScene : MonoBehaviour
         menu.SetActive(true);
     }
 
-    public void Unload()
+    public void exit()
     {
+#if UNITY_IOS
         Application.Unload();
+#elif UNITY_ANDROID
+        Application.Quit();
+#endif
     }
+
 
     public void showToastMessage()
     {

@@ -20,6 +20,7 @@ public class WelcomeScene : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
+        Debug.LogError("Waiting...");
         if (GameData.data != null && !isLoading)
         {
             Debug.LogError(GameData.data);

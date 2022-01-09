@@ -38,7 +38,8 @@ public class XacNhanController : MonoBehaviour
             //Debug.LogError("Lan toa thanh cong"); 
             //mainScene.showToastMessage();
             confirmPopup.SetActive(true);
-            confirmBtn.SetActive(false);
+            if (GameData.confirmed)
+                confirmBtn.SetActive(false);
             thisCanvas.SetActive(false);
             
         }));

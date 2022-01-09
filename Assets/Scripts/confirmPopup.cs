@@ -21,7 +21,7 @@ public class confirmPopup : MonoBehaviour
 
     public void okClick()
     {
-        gameObject.SetActive(false);
+            gameObject.SetActive(false);
     }    
 
 }

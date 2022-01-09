@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
+    [SerializeField] AudioClip shake;
+    [SerializeField] AudioClip firework;
 
     AudioSource bgMusic;
     AudioSource soundEffect;
     [Range(0.0f, 1.0f)]
     public float volume;
     private static AudioController instance;
+
+
+
     private void Awake()
     {
         if (instance == null)
@@ -50,6 +55,21 @@ public class AudioController : MonoBehaviour
         {
             return false;
         }     
+    }
+
+    public static void playShake()
+    {
+        instance.soundEffect.PlayOneShot(instance.shake);
+    }
+
+    public static void playFirework()
+    {
+        instance.soundEffect.PlayOneShot(instance.firework);
+    }
+
+    public static void stopSound()
+    {
+        instance.soundEffect.Stop();
     }
 
 }

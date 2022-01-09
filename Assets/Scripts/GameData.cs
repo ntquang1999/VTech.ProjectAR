@@ -24,6 +24,7 @@ public static class GameData
     public static int queBoiIndex;
     public static string queBoiDescReal;
     public static string data;
+    public static bool confirmed = false;
     public static string[] queBoiCODE = new string[]
     {
         "CHUOT",
@@ -87,7 +88,8 @@ public static class GameData
         "PHUCLOC",
         "HANHTHONG",
         "GRAB30K",
-        "TAILOC"
+        "TAILOC",
+        "LUCKY"
 
     };
     public static string[] tutorialDesc = new string[6];

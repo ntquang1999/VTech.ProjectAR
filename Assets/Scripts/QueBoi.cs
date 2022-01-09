@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class QueBoi : MonoBehaviour
 {
 
+    
 
     public int queBoiIndex = 0;
     Sprite[] queBoi = new Sprite[100];
@@ -28,7 +29,9 @@ public class QueBoi : MonoBehaviour
 
     private void OnEnable()
     {
-        
+
+        AudioController.stopSound();
+        AudioController.playFirework();
         queBoiIndex = GameData.queBoiIndex;
         gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
         gameObject.GetComponent<Image>().SetNativeSize();
@@ -125,6 +128,7 @@ public class QueBoi : MonoBehaviour
         queBoi[59] = Resources.Load<Sprite>("hanhthong");
         queBoi[60] = Resources.Load<Sprite>("phuquy");
         queBoi[61] = Resources.Load<Sprite>("tai_loc");
+        queBoi[62] = Resources.Load<Sprite>("hanh_phuc");
         queBoi[90] = Resources.Load<Sprite>("error");
 
     }

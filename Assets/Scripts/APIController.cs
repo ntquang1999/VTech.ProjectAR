@@ -113,7 +113,7 @@ public static class APIController
                         newItem.ID = codenToIndex(json["data"]["gifts"][i]["giftCode"]) + 1;
                         newItem.name = json["data"]["gifts"][i]["giftName"].Value;
                         if (newItem.ID == 91)
-                            newItem.name = "!!Quẻ khai lỗi!!";
+                            newItem.name = "!!Quẻ khai lỗi!!(" + json["data"]["gifts"][i]["giftCode"]+ ")";
                         newItem.time = timeConverter(json["data"]["gifts"][i]["winAt"]);
                         newItem.date = dateConverter(json["data"]["gifts"][i]["winAt"]);
                         PlayerData.historyItemList.Add(newItem);
@@ -270,10 +270,12 @@ public static class APIController
                 {
                     //Debug.LogError(json["message"].Value);
                     GameData.ToastMessage = json["message"].Value;
+                    GameData.confirmed = true;
                     onCompleted?.Invoke(true);
                 }
                 else
                 {
+                    GameData.confirmed = false;
                     //Debug.LogError(json["message"].Value);
                     GameData.ToastMessage = json["message"].Value;
                     onCompleted?.Invoke(true);
@@ -435,7 +437,7 @@ public static class APIController
                 return index;
             else index++;
         }
-        GameData.queBoiDescReal = "API trả về mã bị lỗi, không có trong danh sách!";
+        GameData.queBoiDescReal = "API trả về mã: "+ code +", không có trong danh sách!";
         return 90;
     }
 

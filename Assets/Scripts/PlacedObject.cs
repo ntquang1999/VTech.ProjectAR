@@ -14,8 +14,8 @@ public class PlacedObject : MonoBehaviour
     float timeNormal = 2;
     float timeSpecial = 7;
 
-    int[] special = {16,19,17,15,14,12,34,25,60};
-
+    //int[] special = {16,19,17,15,14,12,34,25,60,52,53,54};
+    int[] special = { 16, 52, 53, 54, 19, 17, 15, 14, 12, 25, 60};
     private void Start()
     {
         arScene = GameObject.FindGameObjectWithTag("AR").GetComponent<ARScene>();
