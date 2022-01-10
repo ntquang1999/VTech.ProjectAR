@@ -29,6 +29,8 @@ public class MainScene : MonoBehaviour
     public Toast toast;
     public GameObject confirmPopup;
 
+    
+
 
 
     private void Awake()
@@ -72,6 +74,11 @@ public class MainScene : MonoBehaviour
         soLuotLacQue.text =PlayerData.shakeTurn.ToString();
         theLe.text = GameData.theLe;
         waitTime -= Time.deltaTime;
+        if (shaking && waitTime <= 1.5)
+        {
+            //AudioController.playShake();
+        }
+            
         if (shaking && waitTime<=0)
         {
             queBoiCanvas.gameObject.SetActive(true);
@@ -80,12 +87,16 @@ public class MainScene : MonoBehaviour
             xinQueBtn.interactable = true;
             ongQueModel.SetActive(false);
         }
-           
+
+        if (Input.GetKeyUp(KeyCode.Escape) && GameData.menuInput)
+        {
+            exit();
+        }
+
     }
 
     public void XinQue()
     {
-        AudioController.playShake();
         xinQueBtn.interactable = false;
         StartCoroutine(APIController.GetTurn_Call((completed) => 
         {
@@ -96,7 +107,8 @@ public class MainScene : MonoBehaviour
                     //queBoiCanvas.gameObject.SetActive(true);
                     //PlayerData.shakeTurn--;
                     shaking = true;
-                    waitTime = 2f;                    
+                    waitTime = 2f;
+                    AudioController.playShake();
                     particles.SetActive(true);
                 }));
             }

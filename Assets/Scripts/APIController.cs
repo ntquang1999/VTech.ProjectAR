@@ -112,8 +112,8 @@ public static class APIController
                         historyItem newItem = new historyItem();
                         newItem.ID = codenToIndex(json["data"]["gifts"][i]["giftCode"]) + 1;
                         newItem.name = json["data"]["gifts"][i]["giftName"].Value;
-                        if (newItem.ID == 91)
-                            newItem.name = "!!Quẻ khai lỗi!!(" + json["data"]["gifts"][i]["giftCode"]+ ")";
+                        if (newItem.ID == 63)
+                            newItem.name = "Quẻ Hạnh Phúc";
                         newItem.time = timeConverter(json["data"]["gifts"][i]["winAt"]);
                         newItem.date = dateConverter(json["data"]["gifts"][i]["winAt"]);
                         PlayerData.historyItemList.Add(newItem);
@@ -383,7 +383,7 @@ public static class APIController
                 {
                 
                     GameData.theLe = json["data"]["content"].Value;
-                    //Debug.LogError(GameData.theLe) ;
+                    Debug.LogError(json["data"]["content"]) ;
                     onCompleted?.Invoke(true);
                 }
                 else
@@ -437,8 +437,8 @@ public static class APIController
                 return index;
             else index++;
         }
-        GameData.queBoiDescReal = "API trả về mã: "+ code +", không có trong danh sách!";
-        return 90;
+        GameData.queBoiDescReal = "Tết nhuộm màu tươi vui\nNơi gia đình đoàn tụ\nTết thổi bay giá lạnh\nĐem ấm áp về nhà";
+        return 62;
     }
 
     public static string convert84to0(string number)

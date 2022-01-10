@@ -29,7 +29,7 @@ public class QueBoi : MonoBehaviour
 
     private void OnEnable()
     {
-
+        GameData.menuInput = false;
         AudioController.stopSound();
         AudioController.playFirework();
         queBoiIndex = GameData.queBoiIndex;
@@ -52,6 +52,7 @@ public class QueBoi : MonoBehaviour
 
     private void OnDisable()
     {
+        GameData.menuInput = true;
         particles.SetActive(false);
         ongQue.SetActive(true);
         title.SetActive(true);

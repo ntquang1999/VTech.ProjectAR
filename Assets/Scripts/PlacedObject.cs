@@ -12,7 +12,7 @@ public class PlacedObject : MonoBehaviour
     bool shaking = false;
     bool isSpecial = false;
     float timeNormal = 2;
-    float timeSpecial = 7;
+    float timeSpecial = 8;
 
     //int[] special = {16,19,17,15,14,12,34,25,60,52,53,54};
     int[] special = { 16, 52, 53, 54, 19, 17, 15, 14, 12, 25, 60};
@@ -40,6 +40,13 @@ public class PlacedObject : MonoBehaviour
             arScene.showCanvas();
             shaking = false;
         }
+
+        if (shaking && isSpecial && timeSpecial <= 6.8)
+        {
+            AudioController.stopSound();
+        }
+
+
     }
 
     public void shake()
@@ -59,8 +66,8 @@ public class PlacedObject : MonoBehaviour
 
 
         shaking = true;
-        
-        
+
+        AudioController.playShake();
     }
 
     public void reset()

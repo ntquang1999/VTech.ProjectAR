@@ -16,13 +16,19 @@ public class XacNhanController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         mainScene = GameObject.FindGameObjectWithTag("menu").GetComponent<MainScene>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
+        GameData.menuInput = false;
+    }
 
+    private void OnDisable()
+    {
+        GameData.menuInput = true;
     }
 
     public void lanToa()

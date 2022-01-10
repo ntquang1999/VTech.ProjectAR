@@ -18,10 +18,12 @@ public class LichSuController : MonoBehaviour
 
     public void back()
     {
+        GameData.menuInput = true;
         menuObject.GetComponent<MainScene>().back();
     }
     private void OnEnable()
     {
+        GameData.menuInput = false;
         StartCoroutine(APIController.History_Call((completed)=> {
             scroll.content.anchoredPosition = new Vector2(scroll.content.anchoredPosition.x, 0);
             for (int i = PlayerData.historyItemList.Count - 1; i >= 0; i--)
@@ -55,7 +57,7 @@ public class LichSuController : MonoBehaviour
         menuObject = GameObject.FindGameObjectWithTag("menu");
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            menuObject.SetActive(true);
+            back();
             gameObject.SetActive(false);
         }
     }

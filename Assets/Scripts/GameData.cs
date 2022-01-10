@@ -25,6 +25,8 @@ public static class GameData
     public static string queBoiDescReal;
     public static string data;
     public static bool confirmed = false;
+
+    public static bool menuInput = true;
     public static string[] queBoiCODE = new string[]
     {
         "CHUOT",

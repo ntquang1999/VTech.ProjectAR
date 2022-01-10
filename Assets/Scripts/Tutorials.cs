@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Tutorials : MonoBehaviour
 {
     int step = 0;
-    [SerializeField] GameObject menuCanvas;
     [SerializeField] GameObject xinQue;
     [SerializeField] GameObject BST;
     [SerializeField] GameObject LichSu;
@@ -32,34 +31,28 @@ public class Tutorials : MonoBehaviour
         switch(step)
         {
             case 6:
-                xinQue.transform.parent = gameObject.transform;
-                xinQue.GetComponent<Button>().enabled = false;
+                xinQue.SetActive(true);
                 desc.text = GameData.tutorialDesc[0];
                 break;
             case 5:
-                BST.transform.parent = gameObject.transform;
-                BST.GetComponent<Button>().enabled = false;
+                BST.SetActive(true);
                 desc.fontSize = 38;
                 desc.text = GameData.tutorialDesc[1];
                 break;
             case 4:
-                LichSu.transform.parent = gameObject.transform;
-                LichSu.GetComponent<Button>().enabled = false;
+                LichSu.SetActive(true);
                 desc.text = GameData.tutorialDesc[2];
                 break;            
             case 3:
-                MoiBan.transform.parent = gameObject.transform;
-                MoiBan.GetComponent<Button>().enabled = false;
+                MoiBan.SetActive(true);
                 desc.text = GameData.tutorialDesc[3];
                 break;
             case 2:
-                TheLe.transform.parent = gameObject.transform;
-                TheLe.GetComponent<Button>().enabled = false;
+                TheLe.SetActive(true);
                 desc.text = GameData.tutorialDesc[4];
                 break;
             case 1:
-                AR.transform.parent = gameObject.transform;
-                AR.GetComponent<Button>().enabled = false;
+                AR.SetActive(true);
                 desc.fontSize = 38;
                 desc.text = GameData.tutorialDesc[5];
                 break;
@@ -78,19 +71,12 @@ public class Tutorials : MonoBehaviour
 
     public void completeStep()
     {
-        //menuCanvas;
-        xinQue.transform.parent = menuCanvas.transform;
-        BST.transform.parent = menuCanvas.transform;
-        LichSu.transform.parent = menuCanvas.transform;
-        MoiBan.transform.parent = menuCanvas.transform;
-        TheLe.transform.parent = menuCanvas.transform;        
-        AR.transform.parent = menuCanvas.transform;
-        xinQue.GetComponent<Button>().enabled = true;
-        BST.GetComponent<Button>().enabled = true;
-        LichSu.GetComponent<Button>().enabled = true;
-        TheLe.GetComponent<Button>().enabled = true;
-        AR.GetComponent<Button>().enabled = true;
-        MoiBan.GetComponent<Button>().enabled = true;
+        xinQue.SetActive(false);
+        BST.SetActive(false);
+        LichSu.SetActive(false);
+        MoiBan.SetActive(false);
+        TheLe.SetActive(false);
+        AR.SetActive(false);
 
         desc.fontSize = 40;
         step--;

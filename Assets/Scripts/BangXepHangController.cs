@@ -16,11 +16,14 @@ public class BangXepHangController : MonoBehaviour
 
     public void back()
     {
+        GameData.menuInput = true;
         menuObject.GetComponent<MainScene>().back();
+        
     }
 
     private void OnEnable()
    {
+        GameData.menuInput = false;
         StartCoroutine(APIController.Rank_Call((completed)=> {
             for (int i = 0; i < 10; i++)
             {
@@ -41,7 +44,7 @@ public class BangXepHangController : MonoBehaviour
         menuObject = GameObject.FindGameObjectWithTag("menu");
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            menuObject.SetActive(true);
+            back();
             gameObject.SetActive(false);
         }
     }

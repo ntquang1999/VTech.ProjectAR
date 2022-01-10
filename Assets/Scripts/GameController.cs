@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Invoke("Fake", 3);
+        //Invoke("Fake", 2);
         Application.targetFrameRate = 60;
     }
 

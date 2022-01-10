@@ -24,6 +24,16 @@ public class MoiBanController : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        GameData.menuInput = false;
+    }
+
+    private void OnDisable()
+    {
+        GameData.menuInput = true;
+    }
+
     public void lanToa()
     {
         string sdt = "00000";

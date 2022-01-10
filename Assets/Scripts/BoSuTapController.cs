@@ -16,10 +16,12 @@ public class BoSuTapController : MonoBehaviour
 
     public void back()
     {
+        GameData.menuInput = true;
         menuObject.GetComponent<MainScene>().back();
     }
     public void OnEnable()
     {
+        GameData.menuInput = false;
         StartCoroutine(APIController.Collection_Call((completed) => {
             for (int i = 0; i < 12; i++)
             {
@@ -38,7 +40,7 @@ public class BoSuTapController : MonoBehaviour
             menuObject = GameObject.FindGameObjectWithTag("menu");
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            menuObject.SetActive(true);
+            back();
             gameObject.SetActive(false);
         }
     }

@@ -19,9 +19,15 @@ public class confirmPopup : MonoBehaviour
         text.text = GameData.ToastMessage;
     }
 
+    private void OnEnable()
+    {
+        GameData.menuInput = false;
+    }
+
     public void okClick()
     {
-            gameObject.SetActive(false);
+        GameData.menuInput = true;
+        gameObject.SetActive(false);
     }    
 
 }

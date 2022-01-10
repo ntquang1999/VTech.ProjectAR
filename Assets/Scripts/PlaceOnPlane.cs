@@ -40,6 +40,9 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
         public PlayerController controller;
         public Camera camera;
         public Text text;
+        [SerializeField] GameObject moveAnim;
+        [SerializeField] GameObject placeAnim;
+        [SerializeField] GameObject shakeBtn;
         public ARPlaneManager planeManager;
 
         void Awake()
@@ -63,6 +66,8 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
         {
             if (!objectPlaced && m_RaycastManager.Raycast(Camera.current.ViewportToScreenPoint(new Vector3(0.5f,0.5f)), s_Hits, TrackableType.PlaneWithinPolygon))
             {
+                moveAnim.SetActive(false);
+                placeAnim.SetActive(true);
                 text.text = "Đã phát hiện được mặt phẳng, chạm vào màn hình để đặt ống quẻ";
                 var hitPose = s_Hits[0].pose;
                 
@@ -92,11 +97,14 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
 
                 if (spawnedObject == null)
                 {
+                    shakeBtn.SetActive(true);
+                    //gameObject.GetComponent<ARPointCloudManager>().enabled = false;
                     objectPlaced = true;
                     controller.objectPlaced = true;
                     spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, Quaternion.Euler(hitPose.rotation.x, hitPose.rotation.y + 90, hitPose.rotation.z));
                 }
-
+                text.gameObject.SetActive(true);
+                placeAnim.SetActive(false);
                 text.text = "Di chuyển thiết bị từ từ để quan sát";
             }
         }

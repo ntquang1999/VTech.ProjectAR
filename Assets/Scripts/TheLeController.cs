@@ -15,4 +15,14 @@ public class TheLeController : MonoBehaviour
     {
         
     }
+
+    private void OnEnable()
+    {
+        GameData.menuInput = false;
+    }
+
+    public void back()
+    {
+        GameData.menuInput = true;
+    }    
 }
