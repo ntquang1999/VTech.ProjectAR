@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
 
     public GameObject connectError;
 
+    [SerializeField] bool standalone = true;
+
     private void Awake()
     {
         if (instance == null)
@@ -23,7 +25,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("Fake", 2);
+        if(standalone)
+            Invoke("Fake", 2);
         Application.targetFrameRate = 60;
     }
 

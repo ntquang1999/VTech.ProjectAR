@@ -9,6 +9,7 @@ public class BoSuTapController : MonoBehaviour
     public List<GameObject> lockImg = new List<GameObject>();
     public List<Text> count = new List<Text>();
     public GameObject menuObject;
+    [SerializeField] Text collectionPrizeTime;
     private void Start()
     {
         menuObject = GameObject.FindGameObjectWithTag("menu");
@@ -36,6 +37,7 @@ public class BoSuTapController : MonoBehaviour
    
     void Update()
     {
+        collectionPrizeTime.text = GameData.collectionPrizeTime + "";
         if(menuObject == null)
             menuObject = GameObject.FindGameObjectWithTag("menu");
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -58,7 +60,7 @@ public class BoSuTapController : MonoBehaviour
         }
         StartCoroutine(APIController.GetPrize_Call((completed) => {
             menuObject.GetComponent<MainScene>().showPopup();
-
+            StartCoroutine(APIController.Collection_Call((completed) => {}));
         }));
     }    
 }

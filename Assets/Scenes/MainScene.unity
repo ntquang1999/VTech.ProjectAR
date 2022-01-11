@@ -3458,17 +3458,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1359729248289706695, guid: 2bb629c88922d474e9885da06f6148bd, type: 3}
   m_PrefabInstance: {fileID: 418089854}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1468271770 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2119027839300924361, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-  m_PrefabInstance: {fileID: 2907482977456176832}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1550668337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5059,10 +5048,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 700961779698597541, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -61
-      objectReference: {fileID: 0}
     - target: {fileID: 1159661203341858856, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5155,43 +5140,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1159661203341858868, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-      propertyPath: m_TagString
-      value: popup
-      objectReference: {fileID: 0}
-    - target: {fileID: 2656906948652218429, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1899579291}
-    - target: {fileID: 4867218584401346922, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2907482977456176833}
-    - target: {fileID: 4867218584401346922, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: okClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867218584401346922, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: confirmPopup, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829730704362328263, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 1468271770}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
---- !u!114 &2907482977456176833 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5829730704362328263, guid: afa363ec1b16338479a9d279b2e4c0ba, type: 3}
-  m_PrefabInstance: {fileID: 2907482977456176832}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4057327534666901236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6911f266b4188594ea3853c456a1148a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2981733819842039758
 PrefabInstance:
   m_ObjectHideFlags: 0

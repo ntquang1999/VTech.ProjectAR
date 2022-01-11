@@ -195,7 +195,8 @@ public static class APIController
                     int index = codenToIndex(element["code"]);
                     if (index <= 12)
                         PlayerData.zodiacBeast[index] = element["total"];
-                }    
+                }
+                GameData.collectionPrizeTime = json["total"];
                 onCompleted?.Invoke(true);
             }
             else
@@ -341,12 +342,13 @@ public static class APIController
                 var json = JSON.Parse(www.downloadHandler.text);
                 if (json["errorCode"].Value == "0")
                 {
-                    GameData.ToastMessage = json["message"].Value;
+                    Debug.LogError(json);
+                    GameData.ToastMessage = json["data"]["desc"].Value;
                     onCompleted?.Invoke(true);
                 }
                 else
                 {
-                    //Debug.LogError(json["message"].Value);
+                    Debug.LogError(json);
                     GameData.ToastMessage = json["message"].Value;
                     onCompleted?.Invoke(true);
                 }

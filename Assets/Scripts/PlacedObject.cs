@@ -12,7 +12,7 @@ public class PlacedObject : MonoBehaviour
     bool shaking = false;
     bool isSpecial = false;
     float timeNormal = 2;
-    float timeSpecial = 8;
+    float timeSpecial = 9;
 
     //int[] special = {16,19,17,15,14,12,34,25,60,52,53,54};
     int[] special = { 16, 52, 53, 54, 19, 17, 15, 14, 12, 25, 60};
@@ -41,7 +41,7 @@ public class PlacedObject : MonoBehaviour
             shaking = false;
         }
 
-        if (shaking && isSpecial && timeSpecial <= 6.8)
+        if (shaking && isSpecial && timeSpecial <= 7.8)
         {
             AudioController.stopSound();
         }

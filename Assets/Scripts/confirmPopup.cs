@@ -24,6 +24,11 @@ public class confirmPopup : MonoBehaviour
         GameData.menuInput = false;
     }
 
+    private void OnDisable()
+    {
+        GameData.menuInput = true;
+    }
+
     public void okClick()
     {
         GameData.menuInput = true;
