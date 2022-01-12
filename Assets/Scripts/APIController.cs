@@ -419,6 +419,10 @@ public static class APIController
                     if(json["data"]["firstTime"] == 1)
                     {
                         PlayerData.firstTime = true;
+                    }   
+                    else
+                    {
+                        PlayerData.firstTime = false;
                     }    
                     //Debug.LogError(GameData.theLe) ;
                     onCompleted?.Invoke(true);

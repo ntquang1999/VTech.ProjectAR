@@ -30,9 +30,9 @@ public class LichSuController : MonoBehaviour
             {
                 GameObject go2 = Instantiate(go, list);
                 go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("History/" + PlayerData.historyItemList[i].ID);
-                go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().SetNativeSize();
-                if (PlayerData.historyItemList[i].ID >= 23)
-                    go2.transform.GetChild(0).GetChild(0).localScale = Vector3.one * 0.2f;
+                //go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().SetNativeSize();
+                //if (PlayerData.historyItemList[i].ID >= 23 && PlayerData.historyItemList[i].ID <= 52)
+                   // go2.transform.GetChild(0).GetChild(0).localScale = Vector3.one * 0.3f;
           
                 go2.transform.GetChild(1).GetComponent<Text>().text
                     = "Bạn nhận được " + (PlayerData.historyItemList[i].name) + " lúc "

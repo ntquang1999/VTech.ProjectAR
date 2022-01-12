@@ -133,8 +133,8 @@ public class MainScene : MonoBehaviour
 
     public void share()
     {
-        UniClipboard.SetText("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        Application.OpenURL(UniClipboard.GetText());
+        UniClipboard.SetText("https://myvt.page.link/Lacque");
+        //Application.OpenURL(UniClipboard.GetText());
     }    
 
     public void back()

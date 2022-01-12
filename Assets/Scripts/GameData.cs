@@ -94,7 +94,7 @@ public static class GameData
         "LUCKY"
 
     };
-    public static string[] tutorialDesc = new string[6];
+    public static string[] tutorialDesc = new string[7];
 
     public static void GenerateGameData()
     {
@@ -115,10 +115,10 @@ public static class GameData
         tutorialDesc[0] = "Ấn vào đây để bắt đầu lượt xin quẻ. Mỗi quẻ sẽ tương ứng với 1 phần quà hấp dẫn";
         tutorialDesc[1] = "Quá trình xin quẻ bạn có thể nhận được Linh thú. Kiểm tra xem bạn đã sưu tập được những linh thú nào tại đây";
         tutorialDesc[2] = "Bạn cũng có thể kiểm tra lại các phần thưởng, linh thú mà mình đã nhận được ở đây";
-        tutorialDesc[3] = "Đừng quên rủ bạn bè cùng chơi với mình nhé, chúng mình có phần thưởng dành tặng bạn đó";
-        tutorialDesc[4] = "Cụ thể nội dung, thời gian diễn ra chương trình tại đây";
+        tutorialDesc[3] = "Đừng quên rủ bạn bè cùng chơi với mình nhé, phần thưởng bất ngờ đang chờ bạn đó";
+        tutorialDesc[4] = "Tìm hiểu nội dung thể lệ, thời gian diễn ra chương trình tại đây";
         tutorialDesc[5] = "AR Mode sẽ giúp bạn trải nghiệm cảm giác lắc quẻ sống động như thật. Trải nghiệm công nghệ AR mode ngay thôi!";
-       
+        tutorialDesc[6] = "Nhập số điện thoại người mời bạn tham gia game tại đây và nhận lượt xin quẻ";
     }
 
 }

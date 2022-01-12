@@ -10,6 +10,7 @@ public class Tutorials : MonoBehaviour
     [SerializeField] GameObject BST;
     [SerializeField] GameObject LichSu;
     [SerializeField] GameObject MoiBan;
+    [SerializeField] GameObject XacNhan;
     [SerializeField] GameObject TheLe;
     [SerializeField] GameObject BXH;
     [SerializeField] GameObject Share;
@@ -30,31 +31,35 @@ public class Tutorials : MonoBehaviour
     {
         switch(step)
         {
-            case 6:
+            case 7:
                 xinQue.SetActive(true);
                 desc.text = GameData.tutorialDesc[0];
                 break;
-            case 5:
+            case 4:
                 BST.SetActive(true);
                 desc.fontSize = 38;
                 desc.text = GameData.tutorialDesc[1];
                 break;
-            case 4:
+            case 5:
                 LichSu.SetActive(true);
                 desc.text = GameData.tutorialDesc[2];
                 break;            
-            case 3:
+            case 2:
                 MoiBan.SetActive(true);
                 desc.text = GameData.tutorialDesc[3];
                 break;
-            case 2:
+            case 6:
                 TheLe.SetActive(true);
                 desc.text = GameData.tutorialDesc[4];
                 break;
-            case 1:
+            case 3:
                 AR.SetActive(true);
                 desc.fontSize = 38;
                 desc.text = GameData.tutorialDesc[5];
+                break;
+            case 1:
+                XacNhan.SetActive(true);
+                desc.text = GameData.tutorialDesc[6];
                 break;
             case 0:
                 gameObject.SetActive(false);

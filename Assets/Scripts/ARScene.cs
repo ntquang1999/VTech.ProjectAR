@@ -73,7 +73,7 @@ public class ARScene : MonoBehaviour
                 placedObject = GameObject.FindGameObjectWithTag("PlacedObject").GetComponent<PlacedObject>();
                 StartCoroutine(APIController.Roll_Call((completed) => {
                     placedObject.shake();
-                    //AudioController.playShake();
+                    AudioController.playShake();
                 }));               
             }
         }));
