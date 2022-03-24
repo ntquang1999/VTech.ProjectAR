@@ -1,0 +1,4 @@
+Chép
+F:\Unity\VTech.ProjectAR.old\VTech.ProjectAR\MixUnity\MixUnity\deploy
+và ghi đè cho
+F:\Unity\VTech.ProjectAR.old\VTech.ProjectAR\Build\androidLibBuild\unityLibrary\src\main\Il2CppOutputProject\IL2CPP\build\deploy

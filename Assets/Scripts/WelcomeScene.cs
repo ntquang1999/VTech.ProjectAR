@@ -18,37 +18,58 @@ public class WelcomeScene : MonoBehaviour
     float timeout = 10.0f;
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        GameData.ResetGameData();
+        PlayerData.ResetPlayerData();
+    }
+
     void Update()
     {
-        Debug.LogError("Waiting...");
+        Debug.LogError("Waiting..., Data: " + GameData.data);
         if (GameData.data != null && !isLoading)
         {
             Debug.LogError(GameData.data);
             loadData();
             isLoading = true;
-        }       
+        }
     }
 
     void loadData()
     {
+
         gameController = FindObjectOfType<GameController>();
         PlayerData.GeneratePlayerData();
         GameData.GenerateGameData();
+        GameData.getQueBoiImage();
         //LoadMain();
         StartCoroutine(APIController.InitiateAPI((inited) =>
         {
-            StartCoroutine(APIController.GetTurn_Call((completed) => {
-                StartCoroutine(APIController.Rule_Call((completed) => {
-                    StartCoroutine(APIController.FirstLogin_Call((completed) => {
+            isDone = inited;
+            
+            if(inited)
+            {
+                StartCoroutine(APIController.GetTurn_Call((completed) => {
+                    if(completed)
+                    {
+                        StartCoroutine(APIController.Rule_Call((completed) => { }));
+                        StartCoroutine(APIController.FirstLogin_Call((completed) => {
+                            StartCoroutine(LoadMainScene());
+                        }));
 
-                        isDone = true;
-                    }));
+                        
+                    }    
+                        
                 }));
-            }));
-
+                
+                
+            }    
+            
         }));
-        StartCoroutine(LoadMainScene());
-    }    
+        
+        
+    }
 
     private IEnumerator LoadMainScene()
     {
@@ -56,10 +77,10 @@ public class WelcomeScene : MonoBehaviour
         a.allowSceneActivation = false;
         while (!a.isDone)
         {
-            slider.value = a.progress*0.9f;
+            slider.value = a.progress * 0.9f;
             //Debug.LogError(a.progress);
             if (a.progress >= 0.9f)
-                if(isDone)
+                if (isDone)
                 {
                     //Debug.LogError("AAAAAAAAAA");
                     slider.value = 1;
@@ -68,13 +89,13 @@ public class WelcomeScene : MonoBehaviour
                 }
             yield return null;
         }
-        
-            
+
+
         //yield return a;
     }
 
     // Update is called once per frame
-   
+
 
     private void FixedUpdate()
     {
@@ -86,14 +107,14 @@ public class WelcomeScene : MonoBehaviour
 
     public void debug_addProgress()
     {
-        if(sliderValue<1.0f)
-        sliderValue += 0.2f;
+        if (sliderValue < 1.0f)
+            sliderValue += 0.2f;
     }
 
     public void debug_reduceProgress()
     {
-        if(sliderValue>=0.2f)
-        sliderValue -= 0.2f;
+        if (sliderValue >= 0.2f)
+            sliderValue -= 0.2f;
     }
 
     public void LoadMain()

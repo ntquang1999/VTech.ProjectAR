@@ -29,7 +29,7 @@ public class LichSuController : MonoBehaviour
             for (int i = PlayerData.historyItemList.Count - 1; i >= 0; i--)
             {
                 GameObject go2 = Instantiate(go, list);
-                go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("History/" + PlayerData.historyItemList[i].ID);
+                go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = GameData.queBoiHistory[PlayerData.historyItemList[i].ID];
                 //go2.transform.GetChild(0).GetChild(0).GetComponent<Image>().SetNativeSize();
                 //if (PlayerData.historyItemList[i].ID >= 23 && PlayerData.historyItemList[i].ID <= 52)
                    // go2.transform.GetChild(0).GetChild(0).localScale = Vector3.one * 0.3f;

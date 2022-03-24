@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class ARScene : MonoBehaviour
 {
@@ -22,8 +23,29 @@ public class ARScene : MonoBehaviour
     AudioController audioController;
     public GameObject musicBtn;
     public GameObject muteBtn;
+    [SerializeField] ARSession m_Session;
 
-    private void Start()
+    IEnumerator Start()
+    {
+        if ((ARSession.state == ARSessionState.None) ||
+            (ARSession.state == ARSessionState.CheckingAvailability))
+        {
+            yield return ARSession.CheckAvailability();
+        }
+
+        if (ARSession.state == ARSessionState.Unsupported)
+        {
+            GameData.isARvalid = false;
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            // Start the AR session
+            m_Session.enabled = true;
+        }
+    }
+
+    private void Awake()
     {
         audioController = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioController>();
         if(audioController.getState())

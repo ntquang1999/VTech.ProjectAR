@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     private static GameController instance;
 
     public GameObject connectError;
+    public GameObject connectError2;
 
     [SerializeField] bool standalone = true;
 
@@ -25,14 +26,14 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(standalone)
-            Invoke("Fake", 2);
+        //if(standalone)
+            //Invoke("Fake", 2);
         Application.targetFrameRate = 60;
     }
 
     void Fake()
     {
-        receiveData("2bmrcgxcc2kvarti821635414922369");
+        //receiveData("2bmrcgxoybkzpan5u01645000194888");
     }
 
     // Update is called once per frame
@@ -49,8 +50,14 @@ public class GameController : MonoBehaviour
     public void showConnectError()
     {
         connectError.SetActive(true);
-    }  
-    
+    }
+
+    public void showConnectErrorLoading()
+    {
+
+        connectError2.SetActive(true);
+    }
+
     public void receiveData(string receive)
     {
         GameData.data = receive;
@@ -58,9 +65,17 @@ public class GameController : MonoBehaviour
         Debug.LogError("Receive: " + GameData.data);
     }
 
-    public void exit()
+    public void receiveARCheck(bool isValid)
     {
-        Application.Unload();
+        GameData.isARvalid = isValid;
     }
 
+    public void exit()
+    {
+#if UNITY_IOS
+        Application.Unload();
+#elif UNITY_ANDROID
+        Application.Quit();
+#endif
+    }
 }

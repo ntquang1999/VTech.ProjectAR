@@ -21,7 +21,6 @@ public class QueBoi : MonoBehaviour
 
     private void Awake()
     {
-        getQueBoiImage();
         getString();
         particles = GameObject.FindGameObjectWithTag("particles");
         ongQue = GameObject.FindGameObjectWithTag("Player");
@@ -33,7 +32,7 @@ public class QueBoi : MonoBehaviour
         AudioController.stopSound();
         AudioController.playFirework();
         queBoiIndex = GameData.queBoiIndex;
-        gameObject.GetComponent<Image>().sprite = queBoi[queBoiIndex];
+        gameObject.GetComponent<Image>().sprite = GameData.queBoi[queBoiIndex];
         gameObject.GetComponent<Image>().SetNativeSize();
         if(queBoiIndex <= 11)
         {
@@ -52,6 +51,7 @@ public class QueBoi : MonoBehaviour
 
     private void OnDisable()
     {
+        GameData.allowAccelaration = true;
         GameData.menuInput = true;
         particles.SetActive(false);
         ongQue.SetActive(true);

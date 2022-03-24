@@ -370,7 +370,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 521fb499bcc13734ca7c7a6fcd4bb8b1, type: 3}
+    m_Font: {fileID: 12800000, guid: 6ad5507bffd65fa499671e752f1e9dce, type: 3}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
@@ -566,7 +566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21.5044, y: 21.5045}
+  m_AnchoredPosition: {x: -21.504395, y: 21.504395}
   m_SizeDelta: {x: 387.082, y: 215.0457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6177320725817210763
@@ -681,7 +681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6177320726144472094
 RectTransform:
   m_ObjectHideFlags: 0
@@ -720,7 +720,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 19.39
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -728,7 +728,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6177320726144472088
 MonoBehaviour:
@@ -884,8 +884,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.2594, y: -165.28867}
-  m_SizeDelta: {x: 647.5228, y: 302.2214}
+  m_AnchoredPosition: {x: 6.2594, y: -155.79678}
+  m_SizeDelta: {x: 647.5228, y: 317.8151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6177320727075484149
 CanvasRenderer:
@@ -916,18 +916,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 521fb499bcc13734ca7c7a6fcd4bb8b1, type: 3}
-    m_FontSize: 40
+    m_Font: {fileID: 12800000, guid: 6ad5507bffd65fa499671e752f1e9dce, type: 3}
+    m_FontSize: 37
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
-    m_MaxSize: 60
+    m_MaxSize: 37
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 0.8
   m_Text: "B\u1EA1n nh\u1EADn \u0111\u01B0\u1EE3c m\u1ED9t Honda CB150R "
 --- !u!1 &6650202802769601661
 GameObject:

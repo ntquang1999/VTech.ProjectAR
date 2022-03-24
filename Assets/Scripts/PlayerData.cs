@@ -30,6 +30,14 @@ public static class PlayerData
         firstTime = false;
     }
 
+    public static void ResetPlayerData()
+    {
+        phoneNumber = "0123456789";
+        name = "Dummy Player";
+        userTier = 0;
+        shakeTurn = 0;
+        firstTime = false;
+    }
 
     public static void AddItem(historyItem item)
     {
