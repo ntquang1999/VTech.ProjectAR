@@ -89,18 +89,21 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
 
             if (posValid)
             {
-                if(!objectPlaced)
-                {
-                    DestroyImmediate(spawnedObject);
-                }
-                var hitPose = s_Hits[0].pose;
 
-                if (spawnedObject == null)
-                {
-                  
-                    objectPlaced = true;
-                    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, Quaternion.Euler(hitPose.rotation.x, hitPose.rotation.y + 90, hitPose.rotation.z));
-                }
+                //if(!objectPlaced)
+                //{
+                //    DestroyImmediate(spawnedObject);
+                //}
+                var hitPose = s_Hits[0].pose;
+                Instantiate(m_PlacedPrefab, hitPose.position, Quaternion.Euler(hitPose.rotation.x, hitPose.rotation.y + 90, hitPose.rotation.z));
+
+                //if (spawnedObject == null)
+                //{
+                //    Debug.Log("Spawning");
+                //    objectPlaced = true;
+                //    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, Quaternion.Euler(hitPose.rotation.x, hitPose.rotation.y + 90, hitPose.rotation.z));
+                    
+                //}
                 text.gameObject.SetActive(true);
                 placeAnim.SetActive(false);
                 text.text = "Di chuyển thiết bị từ từ để quan sát";
