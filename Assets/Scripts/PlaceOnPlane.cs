@@ -97,10 +97,8 @@ namespace UnityEngine.XR.ARFoundation.ProjectAR
 
                 if (spawnedObject == null)
                 {
-                    shakeBtn.SetActive(true);
-                    //gameObject.GetComponent<ARPointCloudManager>().enabled = false;
+                  
                     objectPlaced = true;
-                    controller.objectPlaced = true;
                     spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, Quaternion.Euler(hitPose.rotation.x, hitPose.rotation.y + 90, hitPose.rotation.z));
                 }
                 text.gameObject.SetActive(true);

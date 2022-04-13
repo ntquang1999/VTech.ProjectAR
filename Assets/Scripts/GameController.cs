@@ -7,8 +7,6 @@ public class GameController : MonoBehaviour
 {
     private static GameController instance;
 
-    public GameObject connectError;
-    public GameObject connectError2;
 
     [SerializeField] bool standalone = true;
 
@@ -20,7 +18,6 @@ public class GameController : MonoBehaviour
             DontDestroyOnLoad(instance);
         }
         else Destroy(gameObject);
-        //PlayerData.GeneratePlayerData();
     }
 
     // Start is called before the first frame update
@@ -49,25 +46,18 @@ public class GameController : MonoBehaviour
 
     public void showConnectError()
     {
-        connectError.SetActive(true);
     }
 
     public void showConnectErrorLoading()
     {
-
-        connectError2.SetActive(true);
     }
 
     public void receiveData(string receive)
     {
-        GameData.data = receive;
-        Debug.LogError("Receive: " + receive);
-        Debug.LogError("Receive: " + GameData.data);
     }
 
     public void receiveARCheck(bool isValid)
     {
-        GameData.isARvalid = isValid;
     }
 
     public void exit()
