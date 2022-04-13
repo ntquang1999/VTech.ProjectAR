@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8772841289800600538}
   m_Father: {fileID: 0}
@@ -101,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 4057977110454342655, guid: 635700ba33b8fde4b93b87230ab870ca, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d5a1dd8ed5d151d48879c3466a9a9caf, type: 2}
+      objectReference: {fileID: 2100000, guid: 789c83f2255828842afec2e30350dcdd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635700ba33b8fde4b93b87230ab870ca, type: 3}
 --- !u!4 &8772841289800600538 stripped

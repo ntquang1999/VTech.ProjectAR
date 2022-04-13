@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2452420b791094396e9842d9761ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlacedPrefab: {fileID: 74032363579258258, guid: 35123728b8b96b2418f96fe32d1353eb, type: 3}
+  m_PlacedPrefab: {fileID: 1854016325464908, guid: cc0258e72b6b7ee4194159e60f244258, type: 3}
   m_Indicator: {fileID: 8301688865689319426, guid: 8010ae11ed3d91d42b14b46783a7f646, type: 3}
   objectPlaced: 0
   controller: {fileID: 1914962141}
@@ -1122,7 +1122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 280.99997, y: 82.670044}
+  m_AnchoredPosition: {x: 280.99997, y: 82.66992}
   m_SizeDelta: {x: 160, y: 123.29468}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368122546
