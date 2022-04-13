@@ -25,7 +25,7 @@ public static class APIController
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("Error");
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -39,7 +39,7 @@ public static class APIController
                 }
                 else
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+                    //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                     Debug.LogError("1");
                     onInited?.Invoke(false);
                 }
@@ -63,7 +63,7 @@ public static class APIController
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+            //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             Debug.LogError("ZZZCCXZ");
         }
         else
@@ -80,7 +80,7 @@ public static class APIController
             }
             else
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                 Debug.LogError(json["message"].Value);
                 onCompleted?.Invoke(false);
             }
@@ -103,7 +103,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -131,7 +131,7 @@ public static class APIController
                 }
                 else
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+                   // GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                     Debug.LogError(json["message"].Value);
                     onCompleted?.Invoke(false);
                 }
@@ -155,7 +155,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+               // GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -177,7 +177,7 @@ public static class APIController
                 }
                 else
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+                    //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                     Debug.LogError(json["message"].Value);
                     onCompleted?.Invoke(false);
                 }
@@ -199,7 +199,7 @@ public static class APIController
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+            //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
         }
         else
         {
@@ -220,7 +220,7 @@ public static class APIController
             }
             else
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+               // GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                 Debug.LogError(json["message"].Value);
                 onCompleted?.Invoke(false, json);
             }
@@ -242,7 +242,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -281,7 +281,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -319,7 +319,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -333,7 +333,7 @@ public static class APIController
                 }
                 else
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+                    //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                     Debug.LogError("11");
                     onCompleted?.Invoke(false);
                 }
@@ -357,7 +357,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -398,7 +398,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -412,7 +412,7 @@ public static class APIController
                 }
                 else
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+                    //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                     Debug.LogError(json["message"].Value);
                     onCompleted?.Invoke(false);
 
@@ -434,7 +434,7 @@ public static class APIController
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
+                //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectError();
             }
             else
             {
@@ -455,7 +455,7 @@ public static class APIController
                 }
                 else
                 {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
+                    //GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().showConnectErrorLoading();
                     //Debug.LogError(json);
                     onCompleted?.Invoke(false);
                 }
